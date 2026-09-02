@@ -80,11 +80,11 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
 .topbar{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--hair)}
 .topbar .row{display:flex;align-items:center;gap:8px;padding:10px 14px;min-height:64px}
 .brand{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
-.brand img{width:42px;height:42px;flex:none}
+.brand img{width:36px;height:36px;flex:none}
 .brand .t{display:flex;flex-direction:column;min-width:0;line-height:1.25}
-.brand .t b{font-family:var(--serif);font-size:18px;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--navy)}
-.brand .t small{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tbtn{display:inline-flex;align-items:center;justify-content:center;gap:4px;min-width:46px;height:44px;padding:0 9px;border-radius:10px;border:1px solid var(--hair);background:var(--paper-2);font-size:15px;color:var(--navy);font-weight:500;flex:none}
+.brand .t b{font-family:var(--serif);font-size:16px;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--navy)}
+.brand .t small{font-size:10.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tbtn{display:inline-flex;align-items:center;justify-content:center;gap:4px;min-width:40px;height:44px;padding:0 7px;border-radius:10px;border:1px solid var(--hair);background:var(--paper-2);font-size:15px;color:var(--navy);font-weight:500;flex:none}
 .tbtn svg.i{font-size:20px}
 .tbtn.on{background:var(--navy);color:#fff;border-color:var(--navy)}
 .back-btn{display:inline-flex;align-items:center;gap:2px;font-size:18px;color:var(--navy);font-weight:500;height:44px;padding:0 6px 0 0}
@@ -126,7 +126,7 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
 .hero{background:var(--hero);color:#fff;padding:26px 20px 28px;text-align:center}
 .hero .today{font-size:.88em;color:#C7D3E8;letter-spacing:.06em}
 .hero .today b{font-weight:500;color:#E9C97A;margin-left:8px}
-.hero h1{font-size:28px;font-weight:900;letter-spacing:.1em;margin-top:14px;color:#fff}
+.hero h1{font-size:25px;font-weight:900;letter-spacing:.06em;margin-top:14px;color:#fff}
 .hero .motto{margin-top:12px;font-family:var(--serif);font-size:19px;letter-spacing:.2em;color:#E9C97A}
 .hero .sub{margin-top:8px;font-size:.88em;color:#C7D3E8;letter-spacing:.06em}
 .featured{display:block;margin:18px 16px 0;background:var(--paper);border:1px solid var(--hair);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
@@ -160,10 +160,10 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
 .lead-band .lp small{font-size:.85em;color:var(--muted);letter-spacing:.25em}
 .lead-band .honor{background:var(--navy-soft);padding:10px 16px;font-size:.9em;color:var(--ink-2);text-align:center;line-height:1.6}
 .lead-band .honor b{color:var(--navy);font-weight:500}
-.lead-band .cta{padding:13px 18px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--hair);color:var(--navy);font-weight:500}
+.lead-band .cta{padding:13px 18px;text-align:center;border-top:1px solid var(--hair);color:var(--navy);font-weight:500}
 .honor-band{margin:16px 16px 0;background:var(--hero);color:#fff;border-radius:12px;padding:18px 20px;text-align:center}
 .honor-band small{display:block;font-size:.85em;letter-spacing:.3em;color:#E9C97A}
-.honor-band b{display:block;font-family:var(--serif);font-size:1.45em;letter-spacing:.18em;margin-top:6px;font-weight:900}
+.honor-band b{display:block;font-family:var(--serif);font-size:1.3em;letter-spacing:.08em;line-height:1.5;margin-top:6px;font-weight:900}
 .honor-band p{margin:8px 0 0;font-size:.82em;color:#C7D3E8}
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 16px}
 .pcard{background:var(--paper);border:1px solid var(--hair);border-radius:12px;padding:12px 6px 10px;text-align:center;box-shadow:var(--shadow)}
@@ -357,7 +357,6 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
     </a>
     <button class="tbtn" id="btn-big" aria-label="放大字體">大字</button>
     <button class="tbtn" id="btn-lang" aria-label="簡繁切換" data-nolang>簡</button>
-    <button class="tbtn" id="btn-search" aria-label="搜尋"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
   </div>
   <div class="row" id="top-sub" hidden>
     <button class="back-btn" id="btn-back"><svg class="i" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>返回</button>
@@ -493,6 +492,7 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
       <a href="#/notify"><svg class="i" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0v5l2 3H4l2-3zM10 20h4"/></svg><span class="t">通知公告</span><span class="chev">›</span></a>
       <a href="#/contact"><svg class="i" viewBox="0 0 24 24"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="t">聯絡我們<small>地址、電話、傳真、電郵、留言</small></span><span class="chev">›</span></a>
       <a href="#/links"><svg class="i" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg><span class="t">友情鏈結<small>全國政協及各地方政協網站</small></span><span class="chev">›</span></a>
+      <button id="btn-search"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="t">搜尋<small>動態標題、內文、省市、人名</small></span><span class="chev">›</span></button>
     </div>
   </section>
   <section class="sec">
@@ -845,7 +845,7 @@ function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("on
   const top=LEADERS.filter(p=>p.title==="主席"||p.title==="會長");
   $("#lead-band").innerHTML=`<div class="top2">${top.map(p=>`<div class="lp"><img src="${p.img}" alt=""><b>${esc(p.name)}</b><small>${esc(p.title)}</small></div>`).join("")}</div>
     <div class="honor"><b>榮譽會長</b>　董建華 · 梁振英 · 李家超</div>
-    <div class="cta"><span>常務副會長 10 位 · 副會長 13 位 · 秘書處</span><span>全部名單 ›</span></div>`;
+    <div class="cta">查看全體領導成員名單 ›</div>`;
   $("#ld-top").innerHTML=top.map(pc).join("");
   $("#ld-evp").innerHTML=LEADERS.filter(p=>p.title.startsWith("常務副會長")).map(pc).join("");
   $("#ld-vp").innerHTML=LEADERS.filter(p=>p.title==="副會長").map(pc).join("");
