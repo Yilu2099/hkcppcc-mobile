@@ -147,8 +147,37 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
 .contact-card{margin:0 16px;background:var(--paper);border:1px solid var(--hair);border-radius:12px;padding:18px;box-shadow:var(--shadow)}
 .contact-card p{margin:0 0 6px;line-height:1.6}
 .contact-card .acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
-.foot{margin:36px 20px 0;padding-top:18px;border-top:1px solid var(--hair);font-size:.82em;color:var(--muted);line-height:1.7;text-align:center}
-.foot img{width:220px;margin:0 auto 10px;opacity:.9}
+.foot{margin:36px 20px 0;padding-top:18px;border-top:1px solid var(--hair);font-size:.68em;color:var(--muted);opacity:.85;line-height:1.6;text-align:center}
+.foot img{width:170px;margin:0 auto 10px;opacity:.85}
+
+/* ============ 領導成員 ============ */
+.lead-band{display:block;margin:0 16px;background:var(--paper);border:1.5px solid var(--navy);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.lead-band .top2{display:grid;grid-template-columns:1fr 1fr}
+.lead-band .lp{display:flex;flex-direction:column;align-items:center;padding:18px 10px 14px}
+.lead-band .lp:first-child{border-right:1px solid var(--hair)}
+.lead-band .lp img{width:96px;height:128px;object-fit:cover;object-position:top;border-radius:8px;border:2px solid var(--gold)}
+.lead-band .lp b{font-family:var(--serif);font-size:1.35em;letter-spacing:.12em;color:var(--navy);margin-top:10px}
+.lead-band .lp small{font-size:.85em;color:var(--muted);letter-spacing:.25em}
+.lead-band .honor{background:var(--navy-soft);padding:10px 16px;font-size:.9em;color:var(--ink-2);text-align:center;line-height:1.6}
+.lead-band .honor b{color:var(--navy);font-weight:500}
+.lead-band .cta{padding:13px 18px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--hair);color:var(--navy);font-weight:500}
+.honor-band{margin:16px 16px 0;background:var(--hero);color:#fff;border-radius:12px;padding:18px 20px;text-align:center}
+.honor-band small{display:block;font-size:.85em;letter-spacing:.3em;color:#E9C97A}
+.honor-band b{display:block;font-family:var(--serif);font-size:1.45em;letter-spacing:.18em;margin-top:6px;font-weight:900}
+.honor-band p{margin:8px 0 0;font-size:.82em;color:#C7D3E8}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 16px}
+.pcard{background:var(--paper);border:1px solid var(--hair);border-radius:12px;padding:12px 6px 10px;text-align:center;box-shadow:var(--shadow)}
+.pcard img{width:78px;height:104px;object-fit:cover;object-position:top;border-radius:6px;margin:0 auto;background:var(--navy-soft)}
+.pcard b{display:block;font-family:var(--serif);font-size:1.05em;letter-spacing:.08em;margin-top:8px;color:var(--ink)}
+.pcard small{display:block;font-size:.76em;color:var(--muted);line-height:1.3;margin-top:2px}
+.pgrid.big{grid-template-columns:1fr 1fr}
+.pgrid.big img{width:112px;height:150px;border:2px solid var(--gold)}
+.pgrid.big b{font-size:1.4em;letter-spacing:.14em;color:var(--navy)}
+.pgrid.big small{font-size:.9em;letter-spacing:.25em}
+.names{margin:0 16px;background:var(--paper);border:1px solid var(--hair);border-radius:12px;box-shadow:var(--shadow);padding:6px 18px}
+.names div{padding:10px 0;border-bottom:1px solid var(--hair);line-height:1.8;color:var(--ink-2)}
+.names div:last-child{border-bottom:0}
+.names b{display:block;color:var(--navy);font-weight:500;font-size:.92em}
 
 /* ============ 動態列表 ============ */
 .segs{display:grid;grid-template-columns:repeat(4,1fr);margin:14px 16px 0;background:var(--paper);border:1px solid var(--hair);border-radius:10px;overflow:hidden}
@@ -349,13 +378,18 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
 
   <a class="featured" id="featured" href="#/"></a>
 
+  <section class="sec" style="margin-top:22px">
+    <div class="sec-h"><h2>領導成員</h2><a class="more" href="#/leaders">全部 ›</a></div>
+    <a class="lead-band" id="lead-band" href="#/leaders"></a>
+  </section>
+
   <section class="sec">
     <nav class="entries">
       <a href="#/news/activity"><svg class="i" viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>最新動態</a>
       <a href="#/news/social"><svg class="i" viewBox="0 0 24 24"><path d="M8 12h8M12 8v8"/><circle cx="12" cy="12" r="9"/></svg>友好往來</a>
       <a href="#/gallery"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 5"/><circle cx="16" cy="9" r="1.5"/></svg>活動相冊</a>
       <a href="#/member"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/></svg>會員服務</a>
-      <a href="#/notify"><svg class="i" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0v5l2 3H4l2-3zM10 20h4"/></svg>通知公告</a>
+      <a href="#/leaders"><svg class="i" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.5"/><path d="M15 15.5a4.5 4.5 0 0 1 6.5 4"/></svg>領導成員</a>
       <a href="#/contact"><svg class="i" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>聯絡我們</a>
     </nav>
   </section>
@@ -452,7 +486,8 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
 <main class="view" id="v-more">
   <section class="sec" style="margin-top:16px">
     <div class="menu">
-      <a href="#/about"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span class="t">關於本會<small>簡介、宗旨、組織架構、章程</small></span><span class="chev">›</span></a>
+      <a href="#/about"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span class="t">關於本會<small>簡介、宗旨、章程、工作委員會</small></span><span class="chev">›</span></a>
+      <a href="#/leaders"><svg class="i" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.5"/><path d="M15 15.5a4.5 4.5 0 0 1 6.5 4"/></svg><span class="t">領導成員<small>主席、會長、副會長、秘書處、榮譽領導、常務理事</small></span><span class="chev">›</span></a>
       <a href="#/news/committee"><svg class="i" viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg><span class="t">委員之聲<small>委員在媒體發表的文章與訪問</small></span><span class="chev">›</span></a>
       <a href="#/news/media"><svg class="i" viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M8 10h8M8 14h5"/></svg><span class="t">媒體報道</span><span class="chev">›</span></a>
       <a href="#/notify"><svg class="i" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0v5l2 3H4l2-3zM10 20h4"/></svg><span class="t">通知公告</span><span class="chev">›</span></a>
@@ -522,6 +557,7 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
         <div class="cell"><b>另設</b><small>秘書長、副秘書長、司庫</small></div>
       </div>
       <p class="tip" style="padding:12px 4px 0">本屆理事會確立「政治立會，改革強會，奉獻為會，服務興會」的工作方向。董事會成員每屆任期 5 年，主席、會長只任一屆。</p>
+      <a class="btn pri wide" href="#/leaders" style="margin-top:14px">查看全體領導成員名單</a>
     </div>
   </section>
   <section class="sec">
@@ -554,6 +590,36 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
       <details><summary>名譽職務</summary><div class="c"><p>董事會可聘請任何人士（包括香港和內地人士）出任贊助人，擔任榮譽或名譽職務。</p><p>註：本會章程經第二屆理事會通過，如需閱讀章程全文，請向各地區召集人索取。</p></div></details>
     </div>
   </section>
+</main>
+
+<!-- ================= 領導成員 ================= -->
+<main class="view" id="v-leaders">
+  <div class="honor-band"><small>榮譽會長</small><b>董建華 · 梁振英 · 李家超</b><p>創會主席 戴德豐 · 創會會長 林樹哲</p></div>
+  <section class="sec">
+    <div class="sec-h"><h2>主席 · 會長</h2></div>
+    <div class="pgrid big" id="ld-top"></div>
+  </section>
+  <section class="sec">
+    <div class="sec-h"><h2>常務副會長</h2></div>
+    <div class="pgrid" id="ld-evp"></div>
+  </section>
+  <section class="sec">
+    <div class="sec-h"><h2>副會長</h2></div>
+    <div class="pgrid" id="ld-vp"></div>
+  </section>
+  <section class="sec">
+    <div class="sec-h"><h2>秘書處</h2></div>
+    <div class="pgrid" id="ld-sec"></div>
+  </section>
+  <section class="sec">
+    <div class="sec-h"><h2>榮譽領導成員</h2></div>
+    <div class="names" id="ld-honor"></div>
+  </section>
+  <section class="sec">
+    <div class="sec-h"><h2>常務理事</h2></div>
+    <div class="acc"><details><summary>展開全部 58 位常務理事</summary><div class="c" id="ld-board"></div></details></div>
+  </section>
+  <p class="tip" style="margin-top:16px">名單及照片取自現站「組織架構 › 領導成員」，正式版由後台維護。</p>
 </main>
 
 <!-- ================= 聯絡 ================= -->
@@ -633,6 +699,7 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
   <h2>少即是多</h2>
   <ul>
     <li><b>首頁只留四段</b>：要聞一則、六個大入口、最新動態、通知公告；聯絡電話放在首頁底部，一鍵撥打。</li>
+    <li><b>領導成員</b>放在首頁要聞之下：主席、會長帶照片，榮譽會長董建華、梁振英、李家超一行字，點進去是全體 45 位領導的名單與照片。</li>
     <li><b>簡／繁一鍵切換</b>：頂欄常駐，內地來訪的政協領導打開就能看簡體；選擇會記住。</li>
     <li><b>「大字」按鈕</b>常駐頂欄，一按全站放大；深色模式移到「更多 → 顯示設定」。</li>
     <li><b>友好往來</b>改為「按省市」下拉篩選，取代原來的 30 格省份圖。</li>
@@ -713,6 +780,17 @@ const LINKS_MAIN = [
 ];
 const LINKS_PROV = ["北京","天津","河北","山西","內蒙古","遼寧","吉林","黑龍江","上海","江蘇","浙江","安徽","福建","江西","山東","河南","湖北","湖南","廣東","廣西","海南","重慶","四川","貴州","雲南","陝西","甘肅","青海","寧夏","深圳","杭州","廣州"];
 
+const LEADERS = {{LEADERS}};
+const HONOR = [
+ ["榮譽會長","董建華、梁振英、李家超"],
+ ["創會主席","戴德豐"],["創會會長","林樹哲"],
+ ["永遠名譽主席","陳清霞、鄭翔玲"],["永遠名譽會長","譚錦球、施榮懷"],
+ ["創會副會長","方鏗、杜惠愷、林海涵、傅金珠"],["創會秘書長","盧溫勝"],
+ ["名譽會長","方鏗、杜惠愷、林海涵、傅金珠、盧溫勝、黃華康、曹其鏞、劉宗明、梁亮勝、丁午壽、董瑞葆、顏純炯、曹其東、鍾瀚德、陳偉燊、余鵬春、李德麟、張學修、王少華、王嘉恩、吳輝體、李耀新、林大輝、林潞、徐莉、張心瑜、蔡加讚"],
+ ["會務顧問","涂輝龍、梁偉浩、楊勳、李金松、容永祺、霍震宇、黃龍德、楊麟振、劉與量、鄧清河、李子良、林立方、羅君美、王惠貞、鄺美雲、張芯瑜、林龍安、譚鎮國、曾智雄、張佐姣、劉娟、陳端亮、楊靈、沈墨寧、陳維端、魏明德、陳健文、龔永德、鄧灝康、蒙美玲、藍國慶、許奇鋒、李蓉、蔡建四、屠海鳴、張利平"]
+];
+const BOARD = "施榮懷（北京）、蔡志忠（山西）、韓世灝（黑龍江）、朱浴龍（安徽）、朱銘泉（山東）、霍啟山（廣東）、馬浩文（重慶）、張宗（陝西）、張立（瀋陽）、莊凌雲（杭州）、董瑞婷（青島）、陳國雄（深圳）、楊莉珊（北京）、吳葵生（內蒙古）、施榮恆（上海）、蔡建四（福建）、劉愛麗（山東）、張廣軍（廣東）、唐安英（四川）、譚岳衡（甘肅）、李文輝（大連）、李本俊（寧波）、陸瀚民（青島）、閻小穎（成都）、樓家強（天津）、王樂得（遼寧）、馬忠禮（江蘇）、謝林翰（江西）、施榮怡（河南）、譚錦球（廣西）、陳月明（貴州）、吳漢忠（青海）、趙志剛（長春）、楊毅融（廈門）、張小宇（武漢）、王增讓（西安）、陳祖恒（河北）、于智慧（吉林）、姚茂龍（江蘇）、鄧文雲（江西）、謝俊明（湖北）、王明凡（廣西）、莊哲猛（雲南）、蔡德昇（寧夏）、英煒（哈爾濱）、李冠華（廈門）、彭徐美雲（廣州）、周文港（河北）、戰濱華（吉林）、詹洪良（浙江）、朱新勝（山東）、孫易兵（湖南）、云海清（海南）、鄭翔玲（陝西）、施振忠（寧夏）、唐偉年（南京）、麥家榮（濟南）、方俊文（廣州）";
+
 /* ====================== 簡繁轉換（建置時由 zhconv 生成字表） ====================== */
 const T2S = {{T2S}};
 const S2T = Object.fromEntries(Object.entries(T2S).map(([t,s])=>[s,t]));
@@ -759,6 +837,21 @@ function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("on
   $("#home-activity").innerHTML=byCat("activity").slice(0,4).map(a=>itemHTML(a)).join("");
   $("#home-social").innerHTML=byCat("social").slice(0,3).map(a=>itemHTML(a)).join("");
   $("#home-notice").innerHTML=NOTICES.map(n=>`<a href="#/notify"><span class="dot"></span><span><b>${esc(n.title)}</b><small class="num">${fmtDate(n.date)}</small></span></a>`).join("");
+})();
+
+/* ====================== 領導成員 ====================== */
+(function(){
+  const pc=(p,big)=>`<div class="pcard">${p.img?`<img src="${p.img}" alt="${esc(p.name)}">`:`<div style="width:78px;height:104px;margin:0 auto;border-radius:6px;background:var(--navy-soft)"></div>`}<b>${esc(p.name)}</b><small>${esc(p.title)}</small></div>`;
+  const top=LEADERS.filter(p=>p.title==="主席"||p.title==="會長");
+  $("#lead-band").innerHTML=`<div class="top2">${top.map(p=>`<div class="lp"><img src="${p.img}" alt=""><b>${esc(p.name)}</b><small>${esc(p.title)}</small></div>`).join("")}</div>
+    <div class="honor"><b>榮譽會長</b>　董建華 · 梁振英 · 李家超</div>
+    <div class="cta"><span>常務副會長 10 位 · 副會長 13 位 · 秘書處</span><span>全部名單 ›</span></div>`;
+  $("#ld-top").innerHTML=top.map(pc).join("");
+  $("#ld-evp").innerHTML=LEADERS.filter(p=>p.title.startsWith("常務副會長")).map(pc).join("");
+  $("#ld-vp").innerHTML=LEADERS.filter(p=>p.title==="副會長").map(pc).join("");
+  $("#ld-sec").innerHTML=LEADERS.filter(p=>p.title.startsWith("副秘書長")||p.title.includes("顧問")||p.title.includes("核數")).map(pc).join("");
+  $("#ld-honor").innerHTML=HONOR.map(([t,n])=>`<div><b>${t}</b>${n}</div>`).join("");
+  $("#ld-board").innerHTML=`<p>${BOARD}</p>`;
 })();
 
 /* ====================== 其他靜態列表 ====================== */
@@ -867,6 +960,7 @@ function route(){
   else if(seg==="member"){ view="member"; tab="member"; }
   else if(seg==="more"){ view="more"; tab="more"; }
   else if(seg==="about"){ view="about"; tab="more"; sub=true; title="關於本會"; }
+  else if(seg==="leaders"){ view="leaders"; tab="more"; sub=true; title="領導成員"; }
   else if(seg==="contact"){ view="contact"; tab="more"; sub=true; title="聯絡我們"; }
   else if(seg==="notify"){ view="notify"; tab="more"; sub=true; title="通知公告"; }
   else if(seg==="links"){ view="links"; tab="more"; sub=true; title="友情鏈結"; }

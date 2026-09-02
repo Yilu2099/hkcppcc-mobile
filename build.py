@@ -7,6 +7,8 @@ html = (root/'src/index.template.html').read_text(encoding='utf-8')
 for k, v in imgs.items():
     html = html.replace('{{IMG_%s}}' % k.upper(), v)
 
+html = html.replace('{{LEADERS}}', open(root/'assets/leaders.json', encoding='utf-8').read().strip())
+
 # 簡繁字表：用 zhconv 把模板裡出現過的每個漢字轉成簡體，只保留有差異的字（約幾百對）
 import re, json as _json
 try:
