@@ -8,4 +8,7 @@
 python3 build.py
 ```
 
-線上預覽：https://claude.ai/code/artifact/feb5083a-846c-4fff-b496-6ae8ca11be8a
+公網網址（GitHub Pages，`docs/` 目錄）：https://yilu2099.github.io/hkcppcc-mobile/
+Artifact 預覽：https://claude.ai/code/artifact/feb5083a-846c-4fff-b496-6ae8ca11be8a
+
+更新上線：`python3 build.py && git add -A && git commit -m "update" && git push`
