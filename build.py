@@ -6,6 +6,18 @@ imgs = json.load(open(root/'assets/images.json'))
 html = (root/'src/index.template.html').read_text(encoding='utf-8')
 for k, v in imgs.items():
     html = html.replace('{{IMG_%s}}' % k.upper(), v)
+
+# 簡繁字表：用 zhconv 把模板裡出現過的每個漢字轉成簡體，只保留有差異的字（約幾百對）
+import re, json as _json
+try:
+    import zhconv
+except ImportError:
+    import subprocess, sys; subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', 'zhconv']); import zhconv
+chars = sorted(set(re.findall(r'[\u3400-\u9fff]', html)))
+t2s = {c: zhconv.convert(c, 'zh-cn') for c in chars}
+t2s = {c: s for c, s in t2s.items() if s != c}
+html = html.replace('{{T2S}}', _json.dumps(t2s, ensure_ascii=False, separators=(',', ':')))
+print('簡繁字表', len(t2s), '對')
 (root/'index.html').write_text(html, encoding='utf-8')
 print('index.html', len(html)//1024, 'KB; leftover placeholders:', html.count('{{IMG_'))
 

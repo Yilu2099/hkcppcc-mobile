@@ -1,384 +1,320 @@
 <title>港省聯 · 手機版</title>
-<meta name="theme-color" content="#C1121F">
+<meta name="theme-color" content="#1F3A68">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap">
 <style>
+/* ============ 設計原則：大字、高對比、留白、少色塊、一屏一事 ============ */
 :root{
-  --red:#C1121F; --red-deep:#7A0C1A; --red-soft:#FBE9EA;
-  --gold:#C9A24A; --gold-deep:#9C7A2A; --gold-soft:#F6EDD6;
-  --ink:#1F1D24; --ink-2:#4A4752; --muted:#7A7580; --hair:#E8E2DA;
-  --navy:#12213A;
-  --bg:#F7F3EC; --paper:#FFFFFF; --paper-2:#FBF8F3;
-  --shadow:0 10px 30px rgba(60,30,20,.10), 0 1px 2px rgba(60,30,20,.06);
-  --on-red:#FFF6EE;
-  --tab-h:66px;
+  --navy:#1F3A68; --navy-deep:#16294B; --navy-soft:#E8EEF7;
+  --gold:#B8963E; --gold-soft:#F5EEDC;
+  --ink:#1E1E1E; --ink-2:#3A3A3F; --muted:#5F5F66; --hair:#D9D4CA;
+  --bg:#F5F3EE; --paper:#FFFFFF; --paper-2:#F9F7F2;
+  --hero:#16294B;
+  --shadow:0 2px 10px rgba(30,40,60,.08);
+  --tab-h:72px;
+  --fs:18px;
   --serif:"Noto Serif TC","Songti TC","PingFang TC",serif;
-  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --sans:"Noto Sans TC","Noto Sans SC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
 }
+:root[data-big="1"]{--fs:20px}
+:root[lang="zh-Hans"]{--sans:"Noto Sans SC","Noto Sans TC","PingFang SC","Microsoft YaHei",system-ui,sans-serif}
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --red:#E0313F; --red-deep:#5E0A14; --red-soft:#3A1A1E;
-    --gold:#D6B25E; --gold-deep:#E5C87A; --gold-soft:#2E2718;
-    --ink:#F1ECE4; --ink-2:#CBC4BA; --muted:#8F8A93; --hair:#2E2B33;
-    --navy:#0C1526;
-    --bg:#131217; --paper:#1C1B21; --paper-2:#211F26;
-    --shadow:0 10px 30px rgba(0,0,0,.45), 0 1px 2px rgba(0,0,0,.4);
-    --on-red:#FFF6EE;
+    --navy:#8FB0E3; --navy-deep:#0F1A2E; --navy-soft:#1E2A40;
+    --gold:#D4B063; --gold-soft:#2C2616;
+    --ink:#F2EFE8; --ink-2:#D5D0C6; --muted:#A9A49B; --hair:#33363D;
+    --bg:#14161B; --paper:#1E2128; --paper-2:#23262E;
+    --hero:#0F1A2E;
+    --shadow:0 2px 10px rgba(0,0,0,.4);
   }
 }
 :root[data-theme="dark"]{
-  --red:#E0313F; --red-deep:#5E0A14; --red-soft:#3A1A1E;
-  --gold:#D6B25E; --gold-deep:#E5C87A; --gold-soft:#2E2718;
-  --ink:#F1ECE4; --ink-2:#CBC4BA; --muted:#8F8A93; --hair:#2E2B33;
-  --navy:#0C1526;
-  --bg:#131217; --paper:#1C1B21; --paper-2:#211F26;
-  --shadow:0 10px 30px rgba(0,0,0,.45), 0 1px 2px rgba(0,0,0,.4);
-  --on-red:#FFF6EE;
+  --navy:#8FB0E3; --navy-deep:#0F1A2E; --navy-soft:#1E2A40;
+  --gold:#D4B063; --gold-soft:#2C2616;
+  --ink:#F2EFE8; --ink-2:#D5D0C6; --muted:#A9A49B; --hair:#33363D;
+  --bg:#14161B; --paper:#1E2128; --paper-2:#23262E;
+  --hero:#0F1A2E;
+  --shadow:0 2px 10px rgba(0,0,0,.4);
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:var(--fs);line-height:1.7;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
 img{max-width:100%;display:block}
-h1,h2,h3,h4{margin:0;font-family:var(--serif);font-weight:700;line-height:1.3;text-wrap:balance}
-:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+h1,h2,h3{margin:0;font-family:var(--serif);font-weight:700;line-height:1.35;text-wrap:balance}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .num{font-variant-numeric:tabular-nums}
+svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 
-/* ===== desktop shell: phone frame + notes ===== */
+/* ============ 電腦端：手機殼 + 說明 ============ */
 .shell{min-height:100vh}
 .notes{display:none}
 @media (min-width:900px){
-  body{background:
-    radial-gradient(1200px 600px at 20% -10%, rgba(193,18,31,.18), transparent 60%),
-    radial-gradient(900px 500px at 100% 100%, rgba(201,162,74,.14), transparent 60%),
-    var(--navy)}
+  body{background:#EAE6DE}
   .shell{display:grid;grid-template-columns:1fr 430px 1fr;align-items:start;gap:40px;padding:36px 24px}
-  .phone{grid-column:2;width:430px;height:900px;border-radius:52px;background:#0b0b0e;padding:12px;box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.08);position:sticky;top:36px}
-  .phone::before{content:"";position:absolute;top:22px;left:50%;transform:translateX(-50%);width:120px;height:32px;border-radius:20px;background:#0b0b0e;z-index:60}
+  .phone{grid-column:2;width:430px;height:900px;border-radius:52px;background:#111;padding:12px;box-shadow:0 30px 70px rgba(0,0,0,.35);position:sticky;top:36px}
+  .phone::before{content:"";position:absolute;top:22px;left:50%;transform:translateX(-50%);width:120px;height:32px;border-radius:20px;background:#111;z-index:60}
   .screen{width:100%;height:100%;border-radius:42px;overflow:hidden;background:var(--bg);position:relative}
   .app{height:100%;overflow-y:auto;overflow-x:hidden;scrollbar-width:none}
   .app::-webkit-scrollbar{display:none}
   .topbar{padding-top:54px}
-  .notes{display:block;grid-column:3;max-width:360px;color:#EDE6DA;padding-top:10px}
+  .notes{display:block;grid-column:3;max-width:360px;color:#2B2B2B;padding-top:10px;font-size:15px;line-height:1.75}
   .notes-l{grid-column:1;justify-self:end;text-align:right;max-width:340px}
-  .notes h2{font-family:var(--serif);font-size:26px;color:#fff;margin-bottom:6px}
-  .notes .kicker{font-size:12px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
-  .notes p{font-size:14px;line-height:1.75;color:#C9C1B4;margin:0 0 12px}
+  .notes h2{font-family:var(--serif);font-size:24px;color:#1F3A68;margin-bottom:8px}
+  .notes .kicker{font-size:13px;letter-spacing:.14em;color:#B8963E;margin-bottom:12px}
+  .notes p{margin:0 0 12px}
   .notes ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
-  .notes li{font-size:13.5px;line-height:1.6;color:#E3DCD0;padding-left:14px;position:relative}
-  .notes li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;background:var(--gold)}
+  .notes li{padding-left:14px;position:relative}
+  .notes li::before{content:"";position:absolute;left:0;top:11px;width:6px;height:6px;background:#B8963E}
   .notes-l li{padding-left:0;padding-right:14px}
   .notes-l li::before{left:auto;right:0}
-  .swatches{display:flex;gap:8px;margin:14px 0 4px;justify-content:flex-end}
-  .swatches i{width:28px;height:28px;border-radius:6px;display:block;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
-  .notes .tag{display:inline-block;font-size:11px;letter-spacing:.1em;padding:3px 8px;border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff;margin:4px 0}
-  .tabbar{position:absolute}
-  .sheet,.lightbox,.search-ov{position:absolute}
-  .progress{position:absolute}
+  .swatches{display:flex;gap:8px;margin:12px 0 4px;justify-content:flex-end}
+  .swatches i{width:30px;height:30px;border-radius:6px;display:block;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+  .tabbar,.sheet,.lightbox,.search-ov,.toast{position:absolute}
 }
 @media (max-width:899px){ .phone,.screen{display:contents} .app{min-height:100vh} .topbar{padding-top:env(safe-area-inset-top)} }
 
-/* ===== app chrome ===== */
-.topbar{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--hair)}
-.topbar .row{display:flex;align-items:center;gap:10px;padding:10px 16px}
+/* ============ 頂欄 ============ */
+.topbar{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--hair)}
+.topbar .row{display:flex;align-items:center;gap:8px;padding:10px 14px;min-height:64px}
 .brand{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
-.seal{width:36px;height:36px;background:var(--red);color:#fff;border-radius:6px;display:grid;place-items:center;font-family:var(--serif);font-weight:900;font-size:11px;line-height:1;letter-spacing:.02em;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55),inset 0 0 0 3px var(--red);flex:none}
-.brand .t{display:flex;flex-direction:column;min-width:0}
-.brand .t b{font-family:var(--serif);font-size:15px;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.brand .t small{font-size:10px;color:var(--muted);letter-spacing:.08em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.icon-btn{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:var(--ink-2);flex:none}
-.icon-btn:active{background:var(--red-soft)}
-.icon-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.back-btn{display:flex;align-items:center;gap:4px;color:var(--ink-2);font-size:14px;padding:0 6px;height:36px;border-radius:10px}
-.back-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.page-title{flex:1;text-align:center;font-family:var(--serif);font-weight:700;font-size:16px;letter-spacing:.06em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand img{width:42px;height:42px;flex:none}
+.brand .t{display:flex;flex-direction:column;min-width:0;line-height:1.25}
+.brand .t b{font-family:var(--serif);font-size:18px;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--navy)}
+.brand .t small{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tbtn{display:inline-flex;align-items:center;justify-content:center;gap:4px;min-width:46px;height:44px;padding:0 9px;border-radius:10px;border:1px solid var(--hair);background:var(--paper-2);font-size:15px;color:var(--navy);font-weight:500;flex:none}
+.tbtn svg.i{font-size:20px}
+.tbtn.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.back-btn{display:inline-flex;align-items:center;gap:2px;font-size:18px;color:var(--navy);font-weight:500;height:44px;padding:0 6px 0 0}
+.back-btn svg.i{font-size:24px}
+.page-title{flex:1;text-align:center;font-family:var(--serif);font-weight:700;font-size:20px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;height:calc(var(--tab-h) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--hair);display:grid;grid-template-columns:repeat(5,1fr)}
-.tabbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11px;color:var(--muted);letter-spacing:.06em;position:relative}
-.tabbar a svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.tabbar a.on{color:var(--red);font-weight:500}
-.tabbar a.on::after{content:"";position:absolute;top:0;width:22px;height:2px;background:var(--red)}
-.view{display:none;padding-bottom:calc(var(--tab-h) + 24px + env(safe-area-inset-bottom));animation:fade .28s ease}
+/* ============ 底部分頁 ============ */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;height:calc(var(--tab-h) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);background:var(--paper);border-top:1px solid var(--hair);display:grid;grid-template-columns:repeat(5,1fr)}
+.tabbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:14px;color:var(--muted);font-weight:500}
+.tabbar a svg.i{font-size:28px;stroke-width:1.7}
+.tabbar a.on{color:var(--navy)}
+.tabbar a.on svg.i{stroke-width:2.2}
+.view{display:none;padding-bottom:calc(var(--tab-h) + 28px + env(safe-area-inset-bottom))}
 .view.on{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
-/* ===== shared blocks ===== */
-.wrap{padding:0 16px}
-.sec{margin-top:30px}
-.sec-h{display:flex;align-items:baseline;gap:10px;padding:0 16px;margin-bottom:12px}
-.sec-h h2{font-size:20px;letter-spacing:.06em;position:relative;padding-left:12px}
-.sec-h h2::before{content:"";position:absolute;left:0;top:5px;bottom:4px;width:4px;background:var(--red)}
-.sec-h .en{font-size:10.5px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;flex:1}
-.sec-h .more{font-size:12.5px;color:var(--red);letter-spacing:.04em}
-.card{background:var(--paper);border-radius:14px;box-shadow:var(--shadow)}
-.list{display:flex;flex-direction:column}
-.item{display:flex;gap:12px;padding:14px 16px;border-bottom:1px solid var(--hair);align-items:flex-start}
-.item:last-child{border-bottom:0}
-.item .d{flex:none;width:44px;text-align:center;font-family:var(--serif)}
-.item .d b{display:block;font-size:20px;line-height:1;color:var(--red);font-weight:900}
-.item .d small{display:block;font-size:10px;letter-spacing:.06em;color:var(--muted);margin-top:4px}
-.item .tt{font-size:14.5px;line-height:1.5;font-weight:500;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.item .meta{font-size:11.5px;color:var(--muted);margin-top:4px;display:flex;gap:8px;align-items:center}
-.chip{display:inline-flex;align-items:center;font-size:10.5px;padding:2px 7px;border-radius:4px;background:var(--red-soft);color:var(--red);letter-spacing:.06em;font-weight:500}
-.chip.gold{background:var(--gold-soft);color:var(--gold-deep)}
-.chip.navy{background:color-mix(in srgb,var(--navy) 10%,transparent);color:var(--ink-2)}
-.item .chev{flex:none;align-self:center;color:var(--hair)}
-.reveal{opacity:0;transform:translateY(14px);transition:opacity .4s ease,transform .4s ease}
-.reveal.in{opacity:1;transform:none}
+/* ============ 通用 ============ */
+.sec{margin-top:32px}
+.sec-h{display:flex;align-items:center;gap:12px;padding:0 20px;margin-bottom:14px}
+.sec-h h2{font-size:23px;color:var(--navy);flex:1}
+.sec-h h2::after{content:"";display:block;width:36px;height:3px;background:var(--gold);margin-top:6px}
+.sec-h .more{font-size:16px;color:var(--navy);font-weight:500}
+.card{background:var(--paper);border:1px solid var(--hair);border-radius:12px;box-shadow:var(--shadow);margin:0 16px;overflow:hidden}
+.list .item{display:flex;gap:14px;padding:18px 18px;border-bottom:1px solid var(--hair);align-items:flex-start;min-height:72px}
+.list .item:last-child{border-bottom:0}
+.item .th{flex:none;width:96px;height:72px;border-radius:8px;background:#CFC9BD center/cover no-repeat}
+.item .tt{font-size:1em;line-height:1.55;font-weight:500;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.item .meta{font-size:.82em;color:var(--muted);margin-top:6px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.item .meta .tag{color:var(--navy);background:var(--navy-soft);padding:1px 8px;border-radius:4px;font-weight:500}
+.item .chev{flex:none;align-self:center;color:var(--hair);font-size:22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 22px;border-radius:10px;font-weight:500;font-size:1em;letter-spacing:.04em}
+.btn.pri{background:var(--navy);color:#fff}
+.btn.sec{background:var(--paper);color:var(--navy);border:1.5px solid var(--navy)}
+.btn.wide{width:100%}
+.btn svg.i{font-size:22px}
+.tip{padding:0 20px;font-size:.88em;color:var(--muted);line-height:1.6}
 
-/* ===== HOME ===== */
-.hero{position:relative;color:var(--on-red);background:var(--red-deep);overflow:hidden}
-.hero .img{position:absolute;inset:0;background:url("{{IMG_HERO}}") center 30%/cover no-repeat;opacity:.55;filter:saturate(.9)}
-.hero .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(90,8,18,.35) 0%,rgba(122,12,26,.75) 55%,#7A0C1A 100%)}
-.hero .inner{position:relative;padding:22px 20px 26px}
-.today{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;opacity:.9}
-.today .lunar{padding:2px 8px;border:1px solid rgba(255,246,238,.45);border-radius:3px;font-family:var(--serif)}
-.hero h1{font-size:30px;font-weight:900;letter-spacing:.12em;margin-top:60px;line-height:1.25;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.35)}
-.hero h1 span{display:block;font-size:13px;font-weight:600;letter-spacing:.3em;color:var(--gold);margin-bottom:8px;text-shadow:none}
-.hero .motto{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap}
-.hero .motto i{font-style:normal;font-family:var(--serif);font-size:13px;letter-spacing:.12em;padding:4px 10px;background:rgba(255,246,238,.12);border:1px solid rgba(255,246,238,.28);border-radius:3px}
-.hero .cta{margin-top:20px;display:flex;gap:10px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:42px;padding:0 18px;border-radius:10px;font-weight:500;font-size:14px;letter-spacing:.06em}
-.btn.gold{background:var(--gold);color:#2A1D05}
-.btn.ghost{border:1px solid rgba(255,246,238,.5);color:#fff}
-.btn.red{background:var(--red);color:#fff}
-.btn.line{border:1px solid var(--hair);color:var(--ink-2);background:var(--paper)}
-.btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* ============ 首頁 ============ */
+.hero{background:var(--hero);color:#fff;padding:26px 20px 28px;text-align:center}
+.hero .today{font-size:.88em;color:#C7D3E8;letter-spacing:.06em}
+.hero .today b{font-weight:500;color:#E9C97A;margin-left:8px}
+.hero h1{font-size:28px;font-weight:900;letter-spacing:.1em;margin-top:14px;color:#fff}
+.hero .motto{margin-top:12px;font-family:var(--serif);font-size:19px;letter-spacing:.2em;color:#E9C97A}
+.hero .sub{margin-top:8px;font-size:.88em;color:#C7D3E8;letter-spacing:.06em}
+.featured{display:block;margin:18px 16px 0;background:var(--paper);border:1px solid var(--hair);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.featured .ph{aspect-ratio:16/9;background:#CFC9BD center/cover no-repeat}
+.featured .b{padding:16px 18px 18px}
+.featured .b .k{font-size:.82em;color:var(--gold);font-weight:700;letter-spacing:.1em}
+.featured .b h3{font-size:1.08em;margin-top:6px;line-height:1.5;font-family:var(--sans);font-weight:700;color:var(--ink)}
+.featured .b .d{font-size:.88em;color:var(--muted);margin-top:8px}
+.entries{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:0 16px}
+.entries a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:104px;background:var(--paper);border:1px solid var(--hair);border-radius:12px;box-shadow:var(--shadow);font-size:1em;font-weight:500;color:var(--ink);padding:14px 6px}
+.entries a svg.i{font-size:34px;color:var(--navy);stroke-width:1.6}
+.entries a:active{background:var(--navy-soft)}
+.notice-list a{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;border-bottom:1px solid var(--hair)}
+.notice-list a:last-child{border-bottom:0}
+.notice-list a .dot{flex:none;width:10px;height:10px;border-radius:50%;background:var(--gold);margin-top:.55em}
+.notice-list a b{font-weight:500;line-height:1.55}
+.notice-list a small{display:block;font-size:.82em;color:var(--muted);margin-top:2px}
+.contact-card{margin:0 16px;background:var(--paper);border:1px solid var(--hair);border-radius:12px;padding:18px;box-shadow:var(--shadow)}
+.contact-card p{margin:0 0 6px;line-height:1.6}
+.contact-card .acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.foot{margin:36px 20px 0;padding-top:18px;border-top:1px solid var(--hair);font-size:.82em;color:var(--muted);line-height:1.7;text-align:center}
+.foot img{width:220px;margin:0 auto 10px;opacity:.9}
 
-.feat{margin-top:-18px;position:relative;z-index:2;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 16px 14px;scrollbar-width:none}
-.feat::-webkit-scrollbar{display:none}
-.fcard{flex:0 0 82%;scroll-snap-align:center;border-radius:14px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow)}
-.fcard .ph{aspect-ratio:16/9;background:#333 center/cover no-repeat;position:relative}
-.fcard .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(20,10,10,.65))}
-.fcard .ph .tag{position:absolute;left:12px;top:12px;background:var(--red);color:#fff;font-size:10.5px;letter-spacing:.1em;padding:3px 8px;border-radius:3px}
-.fcard .ph .prov{position:absolute;right:12px;bottom:10px;color:#fff;font-family:var(--serif);font-weight:900;font-size:22px;letter-spacing:.1em;text-shadow:0 2px 8px rgba(0,0,0,.5)}
-.fcard .b{padding:12px 14px 14px}
-.fcard .b h3{font-size:15px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.fcard .b .m{font-size:11.5px;color:var(--muted);margin-top:6px}
+/* ============ 動態列表 ============ */
+.segs{display:grid;grid-template-columns:repeat(4,1fr);margin:14px 16px 0;background:var(--paper);border:1px solid var(--hair);border-radius:10px;overflow:hidden}
+.segs button{height:50px;font-size:.92em;color:var(--ink-2);font-weight:500;border-right:1px solid var(--hair)}
+.segs button:last-child{border-right:0}
+.segs button.on{background:var(--navy);color:#fff}
+.filter{margin:12px 16px 0;display:flex;align-items:center;gap:10px}
+.filter label{font-size:.92em;color:var(--muted);flex:none}
+.filter select{flex:1;font:inherit;font-size:.95em;height:48px;border:1px solid var(--hair);border-radius:10px;background:var(--paper);color:var(--ink);padding:0 12px}
+.news-list{margin-top:14px}
+.empty{padding:36px 20px;text-align:center;color:var(--muted)}
 
-.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:6px 4px;padding:6px 12px 0}
-.quick a{display:flex;flex-direction:column;align-items:center;gap:7px;padding:10px 4px;border-radius:12px;font-size:12px;color:var(--ink-2);letter-spacing:.04em}
-.quick a:active{background:var(--paper)}
-.quick .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--paper);box-shadow:var(--shadow);color:var(--red)}
-.quick .ic.g{color:var(--gold-deep)}
-.quick .ic.n{color:var(--navy)}
-:root[data-theme="dark"] .quick .ic.n, :root:not([data-theme="light"]) .quick .ic.n{color:var(--ink-2)}
-.quick .ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-
-.stats{margin:22px 16px 0;background:var(--navy);color:#F3EBDD;border-radius:14px;padding:18px 16px 16px;position:relative;overflow:hidden}
-.stats::before{content:"";position:absolute;right:-30px;top:-30px;width:150px;height:150px;border-radius:50%;border:18px solid rgba(201,162,74,.12)}
-.stats .k{font-size:10.5px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase}
-.stats .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 8px;margin-top:10px}
-.stats .s b{display:block;font-family:var(--serif);font-size:26px;font-weight:900;line-height:1.1;color:#fff}
-.stats .s b i{font-style:normal;font-size:13px;color:var(--gold);margin-left:2px;font-weight:600}
-.stats .s small{display:block;font-size:11px;letter-spacing:.08em;color:#B9B1A3;margin-top:3px}
-.stats .foot{margin-top:12px;font-size:11.5px;color:#B9B1A3;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;line-height:1.5}
-
-.prov-wrap{margin:0 16px}
-.prov-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
-.prov{aspect-ratio:1;border-radius:6px;background:var(--paper);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:13px;letter-spacing:.04em;color:var(--ink-2);position:relative;transition:transform .15s}
-.prov.hot{background:var(--red);color:#fff}
-.prov.hot::after{content:attr(data-n);position:absolute;top:3px;right:5px;font-family:var(--sans);font-size:9px;font-weight:500;color:var(--gold)}
-.prov.sel{transform:scale(1.08);box-shadow:0 0 0 2px var(--gold),var(--shadow)}
-.prov.dim{opacity:.55}
-.prov-note{font-size:12px;color:var(--muted);margin:10px 2px 0;line-height:1.5}
-.prov-list{margin-top:12px}
-
-.voice{display:flex;gap:12px;overflow-x:auto;padding:4px 16px 14px;scroll-snap-type:x mandatory;scrollbar-width:none}
-.voice::-webkit-scrollbar{display:none}
-.vcard{flex:0 0 80%;scroll-snap-align:start;background:var(--paper);border-radius:14px;padding:16px 16px 14px;box-shadow:var(--shadow);position:relative;border-top:3px solid var(--gold)}
-.vcard .q{position:absolute;right:14px;top:6px;font-family:var(--serif);font-size:54px;line-height:1;color:var(--gold-soft);font-weight:900}
-.vcard .who{font-family:var(--serif);font-size:18px;font-weight:900;letter-spacing:.06em}
-.vcard .src{font-size:11px;color:var(--muted);letter-spacing:.06em;margin-top:2px}
-.vcard p{margin:10px 0 0;font-size:14px;line-height:1.6;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-
-.gal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px}
-.gal{border-radius:12px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow)}
-.gal .ph{aspect-ratio:3/2;background:#444 center/cover no-repeat}
-.gal .b{padding:9px 11px 4px;font-size:12.5px;line-height:1.45;min-height:44px}
-.gal .b span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.gal .m{padding:0 11px 10px;font-size:10.5px;color:var(--muted)}
-
-.notice{margin:0 16px;background:var(--gold-soft);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:10px}
-.notice a{display:flex;gap:10px;align-items:center;font-size:14px;font-weight:500;color:var(--ink)}
-.notice a i{font-style:normal;flex:none;width:22px;height:22px;border-radius:50%;background:var(--gold);color:#2A1D05;font-size:11px;display:grid;place-items:center;font-weight:700}
-.notice a small{margin-left:auto;font-size:11px;color:var(--gold-deep);white-space:nowrap}
-
-.foot{margin:34px 16px 0;padding-top:20px;border-top:1px solid var(--hair);font-size:12.5px;color:var(--muted);line-height:1.7}
-.foot .logo{width:200px;opacity:.9;margin-bottom:12px}
-.foot b{color:var(--ink-2);font-weight:500}
-.foot .links{display:flex;flex-wrap:wrap;gap:6px 14px;margin:10px 0 0}
-.foot .links a{color:var(--red)}
-
-/* ===== NEWS ===== */
-.segs{display:flex;gap:6px;padding:12px 16px 4px;overflow-x:auto;scrollbar-width:none;position:sticky;top:57px;z-index:30;background:var(--bg)}
-.segs::-webkit-scrollbar{display:none}
-.segs button{flex:none;padding:7px 14px;border-radius:999px;font-size:13.5px;letter-spacing:.06em;color:var(--ink-2);background:var(--paper);box-shadow:var(--shadow)}
-.segs button.on{background:var(--red);color:#fff}
-.news-list{margin:12px 16px 0}
-
-/* ===== ARTICLE ===== */
-.progress{position:fixed;top:0;left:0;height:3px;background:var(--gold);width:0;z-index:50;transition:width .1s linear}
-.art{padding:20px 20px 0}
-.art .kick{display:flex;gap:8px;align-items:center;font-size:11.5px;color:var(--muted);letter-spacing:.06em}
-.art h1{font-size:22px;font-weight:900;line-height:1.45;letter-spacing:.02em;margin-top:12px}
-.art .date{font-family:var(--serif);font-size:13px;color:var(--gold-deep);letter-spacing:.1em;margin-top:10px}
-.art .tools{display:flex;gap:8px;margin-top:16px}
-.art .tools button{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;border:1px solid var(--hair);background:var(--paper);font-size:12.5px;color:var(--ink-2)}
-.art .tools button svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.art figure{margin:18px -20px 0}
+/* ============ 文章 ============ */
+.art{padding:22px 20px 0}
+.art .kick{font-size:.85em;color:var(--gold);font-weight:700;letter-spacing:.08em}
+.art h1{font-size:1.4em;font-family:var(--sans);font-weight:700;line-height:1.5;margin-top:8px;color:var(--ink)}
+.art .date{font-size:.9em;color:var(--muted);margin-top:10px}
+.art .tools{display:flex;gap:10px;margin-top:18px}
+.art .tools button{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;border-radius:10px;border:1px solid var(--hair);background:var(--paper);font-size:.92em;color:var(--navy);font-weight:500}
+.art .tools button svg.i{font-size:20px}
+.art figure{margin:20px -20px 0}
 .art figure img{width:100%}
-.art figure figcaption{font-size:11.5px;color:var(--muted);padding:8px 20px 0;text-align:center}
-.art .body{margin-top:18px;font-size:var(--fs,16px);line-height:1.9;color:var(--ink-2);max-width:40em}
-.art .body p{margin:0 0 1.1em;text-align:justify}
-.art .body p em{font-style:normal;color:var(--ink);font-weight:500;background:linear-gradient(transparent 62%,var(--gold-soft) 62%)}
-.art .end{display:flex;justify-content:center;margin:8px 0 20px;color:var(--gold)}
-.art .rel{margin:10px 0 0}
+.art figure figcaption{font-size:.82em;color:var(--muted);padding:8px 20px 0;text-align:center}
+.art .body{margin-top:20px;line-height:1.95;color:var(--ink);max-width:36em}
+.art .body p{margin:0 0 1.2em;text-align:justify}
+.art .body p em{font-style:normal;font-weight:700;color:var(--navy)}
+.art .end{text-align:center;color:var(--gold);margin:6px 0 26px;letter-spacing:.4em}
 
-/* ===== ABOUT ===== */
-.about-hero{padding:24px 20px 0}
-.about-hero .emblem{width:84px;height:84px;margin:0 auto;border-radius:50%;background:var(--paper);box-shadow:var(--shadow);padding:6px}
-.about-hero h1{text-align:center;font-size:22px;letter-spacing:.14em;margin-top:14px;font-weight:900}
-.about-hero .en{text-align:center;font-size:10.5px;letter-spacing:.14em;color:var(--muted);margin-top:4px}
-.about-hero .since{margin:14px auto 0;width:max-content;font-family:var(--serif);font-size:12px;letter-spacing:.2em;color:var(--gold-deep);border:1px solid var(--gold);padding:4px 12px;border-radius:3px}
-.prose{padding:0 20px;font-size:15px;line-height:1.9;color:var(--ink-2)}
+/* ============ 相冊 ============ */
+.gal-list{margin:16px 16px 0;display:grid;gap:14px}
+.gal{background:var(--paper);border:1px solid var(--hair);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.gal .ph{aspect-ratio:3/2;background:#CFC9BD center/cover no-repeat}
+.gal .b{padding:14px 18px 16px}
+.gal .b b{font-weight:500;line-height:1.55;display:block}
+.gal .b small{display:block;font-size:.85em;color:var(--muted);margin-top:4px}
+
+/* ============ 會員 / 更多 ============ */
+.mem-hero{margin:16px 16px 0;background:var(--hero);color:#fff;border-radius:12px;padding:22px 20px}
+.mem-hero h2{font-size:24px;font-weight:900;letter-spacing:.08em;color:#fff}
+.mem-hero p{margin:8px 0 0;font-size:.92em;line-height:1.65;color:#DCE5F3}
+.menu{margin:0 16px;background:var(--paper);border:1px solid var(--hair);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.menu a,.menu button{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:0 18px;min-height:64px;border-bottom:1px solid var(--hair);font-size:1em;color:var(--ink)}
+.menu a:last-child,.menu button:last-child{border-bottom:0}
+.menu svg.i{font-size:26px;color:var(--navy);flex:none;stroke-width:1.7}
+.menu .t{flex:1;min-width:0;padding:12px 0}
+.menu .t small{display:block;font-size:.82em;color:var(--muted);line-height:1.4}
+.menu .chev{color:var(--hair);font-size:22px}
+.menu .sw{flex:none;width:52px;height:30px;border-radius:15px;background:var(--hair);position:relative;transition:.2s}
+.menu .sw::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.menu .sw.on{background:var(--navy)}
+.menu .sw.on::after{left:25px}
+.seg2{flex:none;display:flex;border:1px solid var(--hair);border-radius:8px;overflow:hidden}
+.seg2 span{padding:6px 12px;font-size:.9em;color:var(--ink-2)}
+.seg2 span.on{background:var(--navy);color:#fff}
+.form{margin:0 16px;background:var(--paper);border:1px solid var(--hair);border-radius:12px;padding:18px;box-shadow:var(--shadow)}
+.form label{display:block;font-size:.92em;color:var(--ink-2);font-weight:500;margin:14px 0 6px}
+.form label:first-child{margin-top:0}
+.form input,.form select,.form textarea{width:100%;font:inherit;font-size:1em;color:var(--ink);background:var(--paper-2);border:1.5px solid var(--hair);border-radius:10px;padding:12px 14px;outline:none;min-height:52px}
+.form input:focus,.form select:focus,.form textarea:focus{border-color:var(--navy)}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form .sub{margin-top:18px;width:100%}
+.form .ok{display:none;margin-top:14px;padding:14px;border-radius:10px;background:var(--gold-soft);color:var(--ink);font-size:.95em;text-align:center;line-height:1.5}
+
+/* ============ 關於 ============ */
+.about-hero{padding:26px 20px 0;text-align:center}
+.about-hero img{width:96px;margin:0 auto}
+.about-hero h1{font-size:24px;letter-spacing:.1em;margin-top:14px;color:var(--navy)}
+.about-hero .en{font-size:.8em;color:var(--muted);letter-spacing:.06em;margin-top:4px}
+.prose{padding:0 20px;line-height:1.95}
 .prose p{margin:0 0 1em;text-align:justify}
-.prose p:first-child::first-letter{font-family:var(--serif);font-size:2.3em;line-height:1;float:left;margin:6px 6px 0 0;color:var(--red);font-weight:900}
-.aims{display:grid;gap:10px;padding:0 16px}
-.aim{background:var(--paper);border-radius:12px;padding:14px 16px 14px 18px;box-shadow:var(--shadow);border-left:4px solid var(--gold);font-size:14px;line-height:1.7;color:var(--ink-2)}
-.aim b{display:block;font-family:var(--serif);font-size:16px;color:var(--ink);letter-spacing:.06em;margin-bottom:4px}
+.facts{margin:0 16px;background:var(--paper);border:1px solid var(--hair);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.facts div{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:14px 18px;border-bottom:1px solid var(--hair)}
+.facts div:last-child{border-bottom:0}
+.facts div span{color:var(--ink-2)}
+.facts div b{font-family:var(--serif);font-size:1.2em;color:var(--navy);white-space:nowrap}
+.aim{margin:0 16px 12px;background:var(--paper);border:1px solid var(--hair);border-left:5px solid var(--gold);border-radius:12px;padding:16px 18px;line-height:1.7}
+.aim b{display:block;font-family:var(--serif);font-size:1.08em;color:var(--navy);margin-bottom:4px}
 .org{padding:0 16px}
-.org .top{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.org .lead{background:var(--red);color:#fff;border-radius:12px;padding:14px;text-align:center}
-.org .lead small{display:block;font-size:11px;letter-spacing:.2em;opacity:.85}
-.org .lead b{display:block;font-family:var(--serif);font-size:22px;font-weight:900;letter-spacing:.14em;margin-top:4px}
-.org .tier{display:flex;justify-content:center;margin:8px 0}
-.org .tier::before{content:"";width:2px;height:14px;background:var(--gold)}
-.org .row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.org .cell{background:var(--paper);box-shadow:var(--shadow);border-radius:10px;padding:10px 6px;text-align:center}
-.org .cell b{display:block;font-family:var(--serif);font-size:20px;font-weight:900;color:var(--red)}
-.org .cell b i{font-style:normal;font-size:11px;color:var(--muted);margin-left:1px}
-.org .cell small{font-size:11px;letter-spacing:.08em;color:var(--ink-2)}
-.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px}
-.chips span{font-size:12.5px;padding:6px 11px;border-radius:999px;background:var(--paper);box-shadow:var(--shadow);color:var(--ink-2);letter-spacing:.04em}
-.chips span.g{background:var(--gold-soft);color:var(--gold-deep)}
-.timeline{padding:0 16px 0 20px;position:relative}
-.timeline::before{content:"";position:absolute;left:31px;top:8px;bottom:8px;width:2px;background:var(--hair)}
-.tl{position:relative;padding:0 0 18px 34px}
-.tl::before{content:"";position:absolute;left:5px;top:5px;width:14px;height:14px;border-radius:50%;background:var(--paper);border:3px solid var(--red)}
-.tl.now::before{background:var(--red);box-shadow:0 0 0 4px var(--red-soft)}
-.tl b{display:block;font-family:var(--serif);font-size:15px;letter-spacing:.06em}
-.tl small{font-size:12px;color:var(--muted);letter-spacing:.06em}
-.acc{margin:0 16px;background:var(--paper);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.org .top{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.org .lead{background:var(--hero);color:#fff;border-radius:12px;padding:16px;text-align:center}
+.org .lead small{display:block;font-size:.85em;letter-spacing:.2em;color:#DCE5F3}
+.org .lead b{display:block;font-family:var(--serif);font-size:1.4em;font-weight:900;letter-spacing:.12em;margin-top:4px}
+.org .row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.org .cell{background:var(--paper);border:1px solid var(--hair);border-radius:12px;padding:12px 6px;text-align:center}
+.org .cell b{display:block;font-family:var(--serif);font-size:1.3em;color:var(--navy)}
+.org .cell small{font-size:.85em;color:var(--ink-2)}
+.tags{display:flex;flex-wrap:wrap;gap:10px;padding:0 16px}
+.tags span{font-size:.95em;padding:8px 14px;border-radius:8px;background:var(--paper);border:1px solid var(--hair);color:var(--ink-2)}
+.tags span.g{background:var(--gold-soft);border-color:var(--gold-soft);color:var(--ink)}
+.timeline{padding:0 20px 0 24px;position:relative}
+.timeline::before{content:"";position:absolute;left:33px;top:10px;bottom:10px;width:2px;background:var(--hair)}
+.tl{position:relative;padding:0 0 20px 32px}
+.tl::before{content:"";position:absolute;left:2px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--paper);border:3px solid var(--navy)}
+.tl.now::before{background:var(--navy)}
+.tl b{display:block;font-weight:500}
+.tl small{font-size:.85em;color:var(--muted)}
+.acc{margin:0 16px;background:var(--paper);border:1px solid var(--hair);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
 .acc details{border-bottom:1px solid var(--hair)}
 .acc details:last-child{border-bottom:0}
-.acc summary{list-style:none;display:flex;align-items:center;gap:10px;padding:14px 16px;font-weight:500;font-size:14.5px;cursor:pointer}
+.acc summary{list-style:none;display:flex;align-items:center;gap:10px;padding:18px;font-weight:500;cursor:pointer;min-height:60px}
 .acc summary::-webkit-details-marker{display:none}
-.acc summary::after{content:"+";margin-left:auto;font-family:var(--serif);font-size:20px;color:var(--gold);line-height:1}
-.acc details[open] summary::after{content:"−"}
-.acc .c{padding:0 16px 14px;font-size:14px;line-height:1.75;color:var(--ink-2)}
-.acc .c p{margin:0 0 .6em}
+.acc summary::after{content:"＋";margin-left:auto;color:var(--navy);font-size:1.2em}
+.acc details[open] summary::after{content:"－"}
+.acc .c{padding:0 18px 16px;line-height:1.8;color:var(--ink-2)}
+.acc .c p{margin:0 0 .7em}
 
-/* ===== MEMBER ===== */
-.mem-hero{margin:16px 16px 0;background:linear-gradient(135deg,var(--red-deep),var(--red) 70%,#D93A47);color:#fff;border-radius:16px;padding:20px 18px;position:relative;overflow:hidden}
-.mem-hero::after{content:"港省聯";position:absolute;right:-10px;bottom:-34px;font-family:var(--serif);font-size:84px;font-weight:900;color:rgba(255,255,255,.08);letter-spacing:.06em;line-height:1}
-.mem-hero small{font-size:11px;letter-spacing:.2em;color:var(--gold)}
-.mem-hero h2{font-size:22px;font-weight:900;letter-spacing:.1em;margin-top:6px}
-.mem-hero p{margin:8px 0 0;font-size:13px;line-height:1.6;opacity:.9;max-width:26em}
-.mem-hero .cta{margin-top:14px;display:flex;gap:8px}
-.svc{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px}
-.svc a{background:var(--paper);border-radius:12px;box-shadow:var(--shadow);padding:14px;display:flex;flex-direction:column;gap:8px;min-height:104px}
-.svc a .ic{width:32px;height:32px;border-radius:9px;background:var(--red-soft);color:var(--red);display:grid;place-items:center}
-.svc a .ic.g{background:var(--gold-soft);color:var(--gold-deep)}
-.svc a .ic svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.svc a b{font-size:14.5px;font-weight:500}
-.svc a small{font-size:11.5px;color:var(--muted);line-height:1.4}
-.form{margin:0 16px;background:var(--paper);border-radius:14px;box-shadow:var(--shadow);padding:16px}
-.form label{display:block;font-size:12px;letter-spacing:.08em;color:var(--muted);margin:12px 0 5px}
-.form label:first-child{margin-top:0}
-.form input,.form select,.form textarea{width:100%;font:inherit;font-size:15px;color:var(--ink);background:var(--paper-2);border:1px solid var(--hair);border-radius:9px;padding:10px 12px;outline:none}
-.form input:focus,.form select:focus,.form textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
-.form .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.form .sub{margin-top:16px;width:100%}
-.form .ok{display:none;margin-top:14px;padding:12px;border-radius:9px;background:var(--gold-soft);color:var(--gold-deep);font-size:13.5px;text-align:center}
-
-/* ===== CONTACT ===== */
-.map{margin:16px 16px 0;height:170px;border-radius:14px;position:relative;overflow:hidden;background:
-  linear-gradient(rgba(201,162,74,.18) 1px,transparent 1px) 0 0/28px 28px,
-  linear-gradient(90deg,rgba(201,162,74,.18) 1px,transparent 1px) 0 0/28px 28px,
-  var(--paper-2)}
-.map .road{position:absolute;left:-10%;right:-10%;top:52%;height:22px;background:var(--gold-soft);transform:rotate(-8deg)}
-.map .road2{position:absolute;top:-10%;bottom:-10%;left:62%;width:14px;background:var(--gold-soft);transform:rotate(12deg)}
-.map .pin{position:absolute;left:58%;top:38%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center}
-.map .pin i{width:16px;height:16px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--red);box-shadow:0 4px 10px rgba(0,0,0,.25)}
-.map .pin b{font-size:11px;background:var(--paper);padding:3px 8px;border-radius:5px;margin-bottom:6px;box-shadow:var(--shadow);white-space:nowrap}
-.map .lbl{position:absolute;left:12px;bottom:10px;font-size:10.5px;color:var(--muted);letter-spacing:.1em}
-.map .lbl2{position:absolute;right:12px;top:10px;font-size:10.5px;color:var(--muted);letter-spacing:.1em}
-.crow{margin:12px 16px 0;background:var(--paper);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
-.crow a,.crow div{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--hair)}
+/* ============ 聯絡 ============ */
+.crow{margin:16px 16px 0;background:var(--paper);border:1px solid var(--hair);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.crow a,.crow div{display:flex;align-items:center;gap:14px;padding:16px 18px;border-bottom:1px solid var(--hair);min-height:72px}
 .crow a:last-child,.crow div:last-child{border-bottom:0}
-.crow .ic{width:34px;height:34px;border-radius:10px;background:var(--red-soft);color:var(--red);display:grid;place-items:center;flex:none}
-.crow .ic svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.crow svg.i{font-size:28px;color:var(--navy);flex:none;stroke-width:1.7}
 .crow .t{flex:1;min-width:0}
-.crow .t small{display:block;font-size:11px;letter-spacing:.1em;color:var(--muted)}
-.crow .t b{display:block;font-weight:500;font-size:14.5px;line-height:1.45}
-.crow .act{font-size:12px;color:var(--red);flex:none}
+.crow .t small{display:block;font-size:.82em;color:var(--muted)}
+.crow .t b{display:block;font-weight:500;line-height:1.5}
+.crow .act{flex:none;font-size:.92em;color:#fff;background:var(--navy);padding:8px 14px;border-radius:8px;font-weight:500}
 
-/* ===== LINKS ===== */
-.lk{margin:0 16px;background:var(--paper);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
-.lk a{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--hair);font-size:14px}
+/* ============ 鏈結 ============ */
+.lk{margin:0 16px;background:var(--paper);border:1px solid var(--hair);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.lk a{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--hair);min-height:60px}
 .lk a:last-child{border-bottom:0}
-.lk a small{margin-left:auto;font-size:11px;color:var(--muted);max-width:44%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.lk a .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex:none}
-.prov-links{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:0 16px}
-.prov-links a{background:var(--paper);box-shadow:var(--shadow);border-radius:8px;padding:9px 4px;text-align:center;font-size:12.5px;font-family:var(--serif);font-weight:700;color:var(--ink-2)}
-.prov-links a.sub{font-family:var(--sans);font-weight:400;font-size:11.5px;color:var(--muted)}
+.lk a .t{flex:1}
+.lk a small{display:block;font-size:.82em;color:var(--muted)}
+.prov-links{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:0 16px}
+.prov-links a{background:var(--paper);border:1px solid var(--hair);border-radius:10px;min-height:52px;display:grid;place-items:center;font-size:.95em;color:var(--ink-2);text-align:center;padding:6px}
 
-/* ===== overlays ===== */
-.sheet{position:fixed;inset:0;z-index:70;display:none;align-items:flex-end;background:rgba(10,6,8,.5)}
+/* ============ 覆蓋層 ============ */
+.sheet{position:fixed;inset:0;z-index:70;display:none;align-items:flex-end;background:rgba(10,14,24,.5)}
 .sheet.on{display:flex}
-.sheet .p{width:100%;background:var(--paper);border-radius:18px 18px 0 0;padding:14px 16px calc(20px + env(safe-area-inset-bottom));animation:up .28s ease}
-@keyframes up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
-.sheet .hd{width:36px;height:4px;border-radius:2px;background:var(--hair);margin:0 auto 14px}
-.sheet h3{font-size:16px;letter-spacing:.06em;margin-bottom:12px}
+.sheet .p{width:100%;background:var(--paper);border-radius:18px 18px 0 0;padding:18px 20px calc(22px + env(safe-area-inset-bottom))}
+.sheet h3{font-size:1.1em;margin-bottom:14px;font-family:var(--sans)}
 .share{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.share button{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11.5px;color:var(--ink-2)}
-.share button i{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;font-style:normal;font-weight:700;color:#fff;font-size:13px}
-.sheet .cancel{margin-top:14px;width:100%;height:44px;border-radius:10px;background:var(--paper-2);font-size:14px;color:var(--ink-2)}
+.share button{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.85em;color:var(--ink-2)}
+.share button i{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;font-style:normal;font-weight:700;color:#fff;font-size:15px}
+.sheet .cancel{margin-top:16px;width:100%;height:52px;border-radius:10px;background:var(--paper-2);border:1px solid var(--hair);font-size:1em;color:var(--ink-2)}
 .lightbox{position:fixed;inset:0;z-index:80;display:none;background:#000;color:#fff;flex-direction:column}
 .lightbox.on{display:flex}
-.lightbox .bar{display:flex;align-items:center;justify-content:space-between;padding:calc(12px + env(safe-area-inset-top)) 16px 10px;font-size:13px}
+.lightbox .bar{display:flex;align-items:center;justify-content:space-between;padding:calc(14px + env(safe-area-inset-top)) 18px 10px;font-size:1em}
+.lightbox .bar button{font-size:1em;padding:8px 14px;border:1px solid rgba(255,255,255,.5);border-radius:8px}
 .lightbox .strip{flex:1;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
 .lightbox .strip::-webkit-scrollbar{display:none}
 .lightbox .strip div{flex:0 0 100%;scroll-snap-align:center;display:grid;place-items:center;padding:10px}
 .lightbox .strip img{max-height:100%;border-radius:6px}
-.lightbox .cap{padding:12px 20px calc(24px + env(safe-area-inset-bottom));font-size:13px;line-height:1.5;text-align:center;color:#D9D2C6}
+.lightbox .cap{padding:14px 22px calc(26px + env(safe-area-inset-bottom));font-size:.92em;line-height:1.5;text-align:center;color:#DDD}
 .search-ov{position:fixed;inset:0;z-index:75;display:none;background:var(--bg);flex-direction:column}
 .search-ov.on{display:flex}
-.search-ov .in{display:flex;gap:8px;align-items:center;padding:calc(10px + env(safe-area-inset-top)) 12px 10px;border-bottom:1px solid var(--hair);background:var(--paper)}
-.search-ov input{flex:1;font:inherit;font-size:15px;height:40px;border-radius:10px;border:1px solid var(--hair);background:var(--paper-2);padding:0 12px;color:var(--ink);outline:none}
-.search-ov input:focus{border-color:var(--gold)}
-.search-ov .res{flex:1;overflow-y:auto;padding:10px 16px}
-.search-ov .hint{font-size:12.5px;color:var(--muted);padding:20px 4px;text-align:center;line-height:1.7}
-.toast{position:fixed;left:50%;bottom:calc(var(--tab-h) + 20px);transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:999px;font-size:13px;opacity:0;pointer-events:none;transition:.25s;z-index:90;white-space:nowrap}
+.search-ov .in{display:flex;gap:10px;align-items:center;padding:calc(12px + env(safe-area-inset-top)) 14px 12px;border-bottom:1px solid var(--hair);background:var(--paper)}
+.search-ov input{flex:1;font:inherit;font-size:1em;height:50px;border-radius:10px;border:1.5px solid var(--hair);background:var(--paper-2);padding:0 14px;color:var(--ink);outline:none}
+.search-ov input:focus{border-color:var(--navy)}
+.search-ov .res{flex:1;overflow-y:auto;padding:12px 0}
+.search-ov .hint{padding:26px 20px;text-align:center;color:var(--muted);line-height:1.7}
+.toast{position:fixed;left:50%;bottom:calc(var(--tab-h) + 24px);transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:12px 20px;border-radius:12px;font-size:.95em;opacity:0;pointer-events:none;transition:.25s;z-index:90;white-space:nowrap}
 .toast.on{opacity:1;transform:translateX(-50%)}
-@media (min-width:900px){.toast{position:absolute}}
-.empty{padding:30px 16px;text-align:center;color:var(--muted);font-size:13px}
 </style>
 
 <div class="shell">
-<aside class="notes notes-l">
-  <div class="kicker">Design Notes</div>
-  <h2>朱紅 · 宣紙 · 金線</h2>
-  <p>色彩取自會徽的朱紅，配以宣紙色底與一條細金線，穩重而不老氣；深色模式獨立調色，夜間閱讀同樣舒服。</p>
-  <div class="swatches"><i style="background:#C1121F"></i><i style="background:#7A0C1A"></i><i style="background:#C9A24A"></i><i style="background:#12213A"></i><i style="background:#F7F3EC"></i></div>
-  <p style="margin-top:14px">標題用思源宋體（Noto Serif TC）壓陣，正文用思源黑體，數字等寬對齊。</p>
+<aside class="notes notes-l" data-nolang>
+  <div class="kicker">設計說明</div>
+  <h2>為 50–65 歲讀者而設</h2>
+  <p>正文 18 號字（一鍵放大到 20 號），行距 1.7，深墨字配米白底，對比度達 AA 級以上。</p>
+  <div class="swatches"><i style="background:#1F3A68"></i><i style="background:#B8963E"></i><i style="background:#F5F3EE"></i><i style="background:#FFFFFF"></i><i style="background:#1E1E1E"></i></div>
+  <p style="margin-top:12px">主色沿用現站的藏藍，沉穩可信；金色只作點綴；紅色只留在會徽上，不再滿屏鋪紅。</p>
   <ul>
-    <li>現網站的全部欄目：關於本會、最新動態、友好往來、委員之聲、媒體報道、活動相冊、通知公告、聯絡我們、友情鏈結，均已完整搬入。</li>
-    <li>內容為 2026 年 9 月從 hkcppcc.org 抓取的真實條目，可直接對照。</li>
+    <li>每一屏只放一件事：首頁是「日期 → 一則要聞 → 六個大入口 → 動態列表」，不再有橫滑輪播和小標籤。</li>
+    <li>可點的地方高度不少於 48px，列表每行 72px 以上，拇指好按。</li>
+    <li>日期寫全「2026年1月8日」，不用縮寫或英文。</li>
+    <li>頂欄常駐「大字」與「簡／繁」兩個按鈕，內地政協領導可一鍵切換簡體。</li>
   </ul>
 </aside>
 
@@ -387,107 +323,78 @@ h1,h2,h3,h4{margin:0;font-family:var(--serif);font-weight:700;line-height:1.3;te
 <header class="topbar" id="topbar">
   <div class="row" id="top-home">
     <a class="brand" href="#/">
-      <span class="seal">港省<br>聯</span>
-      <span class="t"><b>港區省級政協委員聯誼會</b><small>HKCPPCC (PROVINCIAL) MEMBERS ASSOCIATION</small></span>
+      <img src="{{IMG_EMBLEM}}" alt="會徽">
+      <span class="t"><b>港區省級政協委員聯誼會</b><small>HKCPPCC (Provincial) Members Association</small></span>
     </a>
-    <button class="icon-btn" id="btn-search" aria-label="搜索"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
-    <button class="icon-btn" id="btn-theme" aria-label="切換深色模式"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.4A6 6 0 0 1 12 3z"/></svg></button>
+    <button class="tbtn" id="btn-big" aria-label="放大字體">大字</button>
+    <button class="tbtn" id="btn-lang" aria-label="簡繁切換" data-nolang>簡</button>
+    <button class="tbtn" id="btn-search" aria-label="搜尋"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
   </div>
   <div class="row" id="top-sub" hidden>
-    <button class="back-btn" id="btn-back"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>返回</button>
+    <button class="back-btn" id="btn-back"><svg class="i" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>返回</button>
     <div class="page-title" id="page-title"></div>
-    <button class="icon-btn" id="btn-share" aria-label="分享"><svg viewBox="0 0 24 24"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 3v13M7 8l5-5 5 5"/></svg></button>
+    <button class="tbtn" id="btn-lang2" aria-label="簡繁切換" data-nolang>簡</button>
+    <button class="tbtn" id="btn-share" aria-label="分享"><svg class="i" viewBox="0 0 24 24"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 3v13M7 8l5-5 5 5"/></svg></button>
   </div>
 </header>
-<div class="progress" id="progress"></div>
 
-<!-- ================= HOME ================= -->
+<!-- ================= 首頁 ================= -->
 <main class="view on" id="v-home">
   <section class="hero">
-    <div class="img"></div><div class="veil"></div>
-    <div class="inner">
-      <div class="today"><span class="num" id="today"></span><span class="lunar">丙午年 七月廿二</span></div>
-      <h1><span>成立二十周年 · 第七屆理事會</span>凝聚港區政協力量<br>共譜香港由治及興</h1>
-      <div class="motto"><i>服務國家</i><i>服務香港</i><i>服務委員</i></div>
-      <div class="cta">
-        <a class="btn gold" href="#/about">認識聯誼會</a>
-        <a class="btn ghost" href="#/member">會員服務</a>
+    <div class="today"><span class="num" id="today"></span><b>丙午年 七月廿二</b></div>
+    <h1>港區省級政協委員聯誼會</h1>
+    <div class="motto">服務國家 · 服務香港 · 服務委員</div>
+    <div class="sub">成立於 2006 年 · 第七屆理事會</div>
+  </section>
+
+  <a class="featured" id="featured" href="#/"></a>
+
+  <section class="sec">
+    <nav class="entries">
+      <a href="#/news/activity"><svg class="i" viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>最新動態</a>
+      <a href="#/news/social"><svg class="i" viewBox="0 0 24 24"><path d="M8 12h8M12 8v8"/><circle cx="12" cy="12" r="9"/></svg>友好往來</a>
+      <a href="#/gallery"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 5"/><circle cx="16" cy="9" r="1.5"/></svg>活動相冊</a>
+      <a href="#/member"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/></svg>會員服務</a>
+      <a href="#/notify"><svg class="i" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0v5l2 3H4l2-3zM10 20h4"/></svg>通知公告</a>
+      <a href="#/contact"><svg class="i" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>聯絡我們</a>
+    </nav>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><h2>最新動態</h2><a class="more" href="#/news/activity">更多 ›</a></div>
+    <div class="card list" id="home-activity"></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><h2>友好往來</h2><a class="more" href="#/news/social">更多 ›</a></div>
+    <div class="card list" id="home-social"></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><h2>通知公告</h2><a class="more" href="#/notify">更多 ›</a></div>
+    <div class="card notice-list" id="home-notice"></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><h2>聯絡我們</h2></div>
+    <div class="contact-card">
+      <p><b>香港告士打道 160 號海外信托銀行大廈 8 樓</b></p>
+      <p>電話 <span class="num">(852) 2877 8818</span></p>
+      <p>電郵 info@hkcppcc.org</p>
+      <div class="acts">
+        <a class="btn pri" href="tel:+85228778818"><svg class="i" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>撥打電話</a>
+        <a class="btn sec" href="#/contact">查看詳情</a>
       </div>
     </div>
   </section>
 
-  <div class="feat" id="feat"></div>
-
-  <nav class="quick">
-    <a href="#/member"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 6h16v13H4zM4 10h16M9 14h4"/></svg></span>會員登記</a>
-    <a href="#/member#checkin"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg></span>活動簽到</a>
-    <a href="#/notify"><span class="ic n"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0v5l2 3H4l2-3zM10 20h4"/></svg></span>通知公告</a>
-    <a href="#/notify"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></span>會務意見箱</a>
-    <a href="#/notify"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"/><path d="M8 10h8M8 14h8"/></svg></span>電子會訊</a>
-    <a href="#/notify"><span class="ic n"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h3v3M20 14v6h-6"/></svg></span>官方公眾號</a>
-    <a href="#/contact"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span>聯絡我們</a>
-    <a href="#/links"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span>友情鏈結</a>
-  </nav>
-
-  <section class="stats reveal">
-    <div class="k">聯誼會概覽 · At a glance</div>
-    <div class="grid">
-      <div class="s"><b><span class="num cnt" data-to="20">0</span><i>年</i></b><small>2006 年 9 月成立</small></div>
-      <div class="s"><b><span class="num cnt" data-to="3529">0</span><i>人</i></b><small>現有會員</small></div>
-      <div class="s"><b><span class="num cnt" data-to="30">0</span><i>省區市</i></b><small>另 15 個副省級城市</small></div>
-      <div class="s"><b><span class="num cnt" data-to="16">0</span><i>個</i></b><small>工作委員會</small></div>
-      <div class="s"><b><span class="num cnt" data-to="133">0</span><i>人</i></b><small>全國政協委員</small></div>
-      <div class="s"><b><span class="num cnt" data-to="44">0</span><i>人</i></b><small>立法會議員</small></div>
-    </div>
-    <div class="foot">現屆委員 1,306 人、往屆資深委員 2,229 人；另有全國人大代表 23 人、區議員 64 人、選舉委員會成員 502 人。</div>
-  </section>
-
-  <section class="sec">
-    <div class="sec-h"><h2>最新動態</h2><span class="en">Latest</span><a class="more" href="#/news/activity">全部 ›</a></div>
-    <div class="card list" style="margin:0 16px" id="home-activity"></div>
-  </section>
-
-  <section class="sec">
-    <div class="sec-h"><h2>省市往來</h2><span class="en">Exchange map</span><a class="more" href="#/news/social">全部 ›</a></div>
-    <div class="prov-wrap reveal">
-      <div class="prov-grid" id="prov-grid"></div>
-      <div class="prov-note" id="prov-note">紅色為近期有交流往來的省市，點按可查看相關動態。聯誼會會員來自全國 30 個省、自治區、直轄市及 15 個副省級城市。</div>
-      <div class="card list prov-list" id="prov-list"></div>
-    </div>
-  </section>
-
-  <section class="sec">
-    <div class="sec-h"><h2>委員之聲</h2><span class="en">Voices</span><a class="more" href="#/news/committee">全部 ›</a></div>
-    <div class="voice" id="home-voice"></div>
-  </section>
-
-  <section class="sec">
-    <div class="sec-h"><h2>媒體報道</h2><span class="en">In the press</span><a class="more" href="#/news/media">全部 ›</a></div>
-    <div class="card list" style="margin:0 16px" id="home-media"></div>
-  </section>
-
-  <section class="sec">
-    <div class="sec-h"><h2>活動相冊</h2><span class="en">Gallery</span><a class="more" href="#/gallery">全部 ›</a></div>
-    <div class="gal-grid" id="home-gallery"></div>
-  </section>
-
-  <section class="sec">
-    <div class="sec-h"><h2>通知公告</h2><span class="en">Notices</span><a class="more" href="#/notify">全部 ›</a></div>
-    <div class="notice" id="home-notice"></div>
-  </section>
-
   <footer class="foot">
-    <img class="logo" src="{{IMG_LOGO}}" alt="港區省級政協委員聯誼會">
-    <b>香港告士打道 160 號海外信托銀行大廈 8 樓</b><br>
-    8/F, Overseas Trust Bank Building, 160 Gloucester Road, HKSAR<br>
-    電話 <a class="num" href="tel:+85228778818">(852) 2877 8818</a> · 傳真 <span class="num">(852) 2877 0203</span><br>
-    電郵 <a href="mailto:info@hkcppcc.org">info@hkcppcc.org</a>
-    <div class="links"><a href="#/about">關於本會</a><a href="#/contact">聯絡我們</a><a href="#/links">友情鏈結</a><a href="#/notify">通知公告</a></div>
-    <div style="margin-top:12px;font-size:11px">版權所有 © 2006–2026 港區省級政協委員聯誼會有限公司 · 港區省級政協委員聯誼會基金有限公司</div>
+    <img src="{{IMG_LOGO}}" alt="">
+    版權所有 © 2006–2026<br>港區省級政協委員聯誼會有限公司<br>港區省級政協委員聯誼會基金有限公司
   </footer>
 </main>
 
-<!-- ================= NEWS ================= -->
+<!-- ================= 動態 ================= -->
 <main class="view" id="v-news">
   <div class="segs" id="segs">
     <button data-cat="activity">最新動態</button>
@@ -495,242 +402,257 @@ h1,h2,h3,h4{margin:0;font-family:var(--serif);font-weight:700;line-height:1.3;te
     <button data-cat="committee">委員之聲</button>
     <button data-cat="media">媒體報道</button>
   </div>
+  <div class="filter" id="prov-filter" hidden><label for="prov-sel">按省市</label><select id="prov-sel"><option value="">全部省市</option></select></div>
   <div class="card list news-list" id="news-list"></div>
 </main>
 
-<!-- ================= ARTICLE ================= -->
+<!-- ================= 文章 ================= -->
 <main class="view" id="v-article"><article class="art" id="art"></article></main>
 
-<!-- ================= GALLERY ================= -->
+<!-- ================= 相冊 ================= -->
 <main class="view" id="v-gallery">
-  <div class="sec-h" style="margin-top:18px"><h2>活動相冊</h2><span class="en">Gallery</span></div>
-  <div class="gal-grid" id="gallery-grid"></div>
+  <div class="sec-h" style="margin-top:22px"><h2>活動相冊</h2></div>
+  <div class="gal-list" id="gallery-list"></div>
 </main>
 
-<!-- ================= MEMBER ================= -->
+<!-- ================= 會員 ================= -->
 <main class="view" id="v-member">
   <section class="mem-hero">
-    <small>MEMBER SERVICES</small>
     <h2>會員服務</h2>
     <p>凡現任及退任港區省級、副省級行政區域政協常委、委員，均為聯誼會當然會員。</p>
-    <div class="cta"><a class="btn gold" href="#reg">會員登記</a><a class="btn ghost" href="#/about">查看章程</a></div>
   </section>
   <section class="sec" style="margin-top:16px">
-    <div class="svc">
-      <a href="#/member#checkin" id="checkin"><span class="ic"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg></span><b>活動報名 · 簽到</b><small>掃碼簽到、餐桌指引，接入活動系統</small></a>
-      <a href="#/notify"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"/><path d="M8 10h8M8 14h8"/></svg></span><b>電子會訊</b><small>會訊及活動特刊合集</small></a>
-      <a href="#/notify"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></span><b>會務意見箱</b><small>對會務發展提出建議</small></a>
-      <a href="#/notify"><span class="ic g"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h3v3M20 14v6h-6"/></svg></span><b>官方公眾號</b><small>微信關注，接收最新動態</small></a>
+    <div class="menu">
+      <a href="#/member#checkin" id="checkin"><svg class="i" viewBox="0 0 24 24"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg><span class="t">活動報名 · 簽到<small>掃碼簽到、餐桌指引</small></span><span class="chev">›</span></a>
+      <a href="#/notify"><svg class="i" viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"/><path d="M8 10h8M8 14h8"/></svg><span class="t">電子會訊<small>會訊及活動特刊合集</small></span><span class="chev">›</span></a>
+      <a href="#/notify"><svg class="i" viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg><span class="t">會務意見箱<small>對會務發展提出建議</small></span><span class="chev">›</span></a>
+      <a href="#/notify"><svg class="i" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h3v3M20 14v6h-6"/></svg><span class="t">官方微信公眾號<small>關注後接收最新動態</small></span><span class="chev">›</span></a>
+      <a href="#/about"><svg class="i" viewBox="0 0 24 24"><path d="M6 4h12v16H6z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg><span class="t">會員章程<small>會員、理事會、名譽職務</small></span><span class="chev">›</span></a>
     </div>
   </section>
   <section class="sec" id="reg">
-    <div class="sec-h"><h2>會員登記</h2><span class="en">Registration</span></div>
+    <div class="sec-h"><h2>會員登記</h2></div>
     <form class="form" id="reg-form">
       <label>姓名</label><input required placeholder="請輸入姓名">
       <div class="two">
         <div><label>稱謂</label><select><option>先生</option><option>女士</option></select></div>
-        <div><label>聯絡電話</label><input required inputmode="tel" placeholder="(852)"></div>
+        <div><label>聯絡電話</label><input required inputmode="tel"></div>
       </div>
-      <label>電郵地址</label><input type="email" required placeholder="name@example.com">
-      <label>所屬政協</label><select><option>請選擇省級／副省級政協</option><option>北京市政協</option><option>上海市政協</option><option>廣東省政協</option><option>浙江省政協</option><option>福建省政協</option><option>湖北省政協</option><option>河南省政協</option><option>四川省政協</option><option>深圳市政協</option><option>杭州市政協</option><option>其他</option></select>
+      <label>電郵地址</label><input type="email" required>
+      <label>所屬政協</label><select><option>請選擇</option><option>北京市政協</option><option>上海市政協</option><option>廣東省政協</option><option>浙江省政協</option><option>福建省政協</option><option>湖北省政協</option><option>河南省政協</option><option>四川省政協</option><option>深圳市政協</option><option>杭州市政協</option><option>其他</option></select>
       <label>屆別 / 職務</label><input placeholder="例：第十三屆 常委">
-      <label>其他信息</label><textarea rows="3" placeholder="可留空"></textarea>
-      <button class="btn red sub" type="submit">提交登記</button>
+      <label>其他信息（可留空）</label><textarea rows="3"></textarea>
+      <button class="btn pri sub" type="submit">提交登記</button>
       <div class="ok" id="reg-ok">已收到您的登記，秘書處將於 3 個工作日內聯絡您。</div>
     </form>
   </section>
 </main>
 
-<!-- ================= ABOUT ================= -->
+<!-- ================= 更多 ================= -->
+<main class="view" id="v-more">
+  <section class="sec" style="margin-top:16px">
+    <div class="menu">
+      <a href="#/about"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span class="t">關於本會<small>簡介、宗旨、組織架構、章程</small></span><span class="chev">›</span></a>
+      <a href="#/news/committee"><svg class="i" viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg><span class="t">委員之聲<small>委員在媒體發表的文章與訪問</small></span><span class="chev">›</span></a>
+      <a href="#/news/media"><svg class="i" viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M8 10h8M8 14h5"/></svg><span class="t">媒體報道</span><span class="chev">›</span></a>
+      <a href="#/notify"><svg class="i" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0v5l2 3H4l2-3zM10 20h4"/></svg><span class="t">通知公告</span><span class="chev">›</span></a>
+      <a href="#/contact"><svg class="i" viewBox="0 0 24 24"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="t">聯絡我們<small>地址、電話、傳真、電郵、留言</small></span><span class="chev">›</span></a>
+      <a href="#/links"><svg class="i" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg><span class="t">友情鏈結<small>全國政協及各地方政協網站</small></span><span class="chev">›</span></a>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="sec-h"><h2>顯示設定</h2></div>
+    <div class="menu">
+      <button id="set-lang"><svg class="i" viewBox="0 0 24 24"><path d="M4 6h10M9 4v2M6 10c1 3 3 6 6 8M12 10c-1 3-3 6-6 8"/><path d="M14 20l3-8 3 8M15.2 17h3.6"/></svg><span class="t">文字<small>繁體中文 / 简体中文</small></span><span class="seg2" data-nolang><span id="lg-t">繁</span><span id="lg-s">简</span></span></button>
+      <button id="set-big"><svg class="i" viewBox="0 0 24 24"><path d="M4 18 10 5l6 13M6 14h8M17 12h5M19.5 9.5v5"/></svg><span class="t">大字模式<small>正文放大到 20 號字</small></span><span class="sw" id="sw-big"></span></button>
+      <button id="set-dark"><svg class="i" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.4A6 6 0 0 1 12 3z"/></svg><span class="t">深色模式<small>夜間閱讀較不刺眼</small></span><span class="sw" id="sw-dark"></span></button>
+    </div>
+  </section>
+  <footer class="foot">
+    <img src="{{IMG_LOGO}}" alt="">
+    版權所有 © 2006–2026 港區省級政協委員聯誼會
+  </footer>
+</main>
+
+<!-- ================= 關於 ================= -->
 <main class="view" id="v-about">
   <section class="about-hero">
-    <div class="emblem"><img src="{{IMG_EMBLEM}}" alt="會徽"></div>
+    <img src="{{IMG_EMBLEM}}" alt="會徽">
     <h1>港區省級政協委員聯誼會</h1>
-    <div class="en">HKCPPCC (PROVINCIAL) MEMBERS ASSOCIATION</div>
-    <div class="since">SINCE 2006 · 9 · 6</div>
+    <div class="en">HKCPPCC (Provincial) Members Association</div>
   </section>
   <section class="sec">
-    <div class="sec-h"><h2>本會簡介</h2><span class="en">About</span></div>
+    <div class="sec-h"><h2>本會簡介</h2></div>
     <div class="prose">
-      <p>港區省級政協委員聯誼會於 2006 年 9 月 6 日在香港成立，是在全國政協、中央統戰部、中央港澳辦和中央政府駐港聯絡辦支持下，由全國 30 個省、自治區、直轄市和 15 個副省級城市的港區政協委員組成的愛國愛港社團。聯誼會以「服務國家、服務香港、服務委員」為宗旨，凡現任及退任港區省級及副省級行政區域的政協常委、委員均為聯誼會當然會員，現有會員 3,529 人，其中現屆委員 1,306 人、往屆資深委員 2,229 人。</p>
-      <p>會員中有全國人大代表 23 人，全國政協委員 133 人，香港立法會議員 44 人，區議會議員 64 人，選舉委員會成員 502 人，各大學校長、銀行行長、商會會長、各行業專業人士等香港各界精英翹楚。</p>
-      <p>聯誼會團結和帶領全體會員，積極發揮港區政協委員「雙重積極作用」，配合國家發展規劃，積極參政議政履職盡責，全面推動香港與內地各省市交流合作，助力香港更好更快融入國家發展大局。聯誼會全力支持特區政府依法施政，廣泛聯繫香港各界人士，促進社會和諧發展。</p>
+      <p>港區省級政協委員聯誼會於 2006 年 9 月 6 日在香港成立，是在全國政協、中央統戰部、中央港澳辦和中央政府駐港聯絡辦支持下，由全國 30 個省、自治區、直轄市和 15 個副省級城市的港區政協委員組成的愛國愛港社團。</p>
+      <p>聯誼會以「服務國家、服務香港、服務委員」為宗旨，凡現任及退任港區省級及副省級行政區域的政協常委、委員均為聯誼會當然會員。會員中有各大學校長、銀行行長、商會會長、各行業專業人士等香港各界精英翹楚。</p>
+      <p>聯誼會團結和帶領全體會員，積極發揮港區政協委員「雙重積極作用」，全面推動香港與內地各省市交流合作，助力香港更好更快融入國家發展大局；全力支持特區政府依法施政，廣泛聯繫香港各界人士，促進社會和諧發展。</p>
     </div>
   </section>
   <section class="sec">
-    <div class="sec-h"><h2>宗旨</h2><span class="en">Mission</span></div>
-    <div class="aims">
-      <div class="aim"><b>服務國家 · 服務香港 · 服務委員</b>促進香港與祖國內地各方面的交流，積極配合貫徹落實「一國兩制」方針和基本法，支持香港特區政府依法施政，維護香港的長期繁榮穩定發展。</div>
-      <div class="aim"><b>廣泛團結</b>團結香港地區省級政協委員及歷屆委員，積極參與國家現代化建設，促進相互學習和交流，加強與香港各界人士的聯繫。</div>
-      <div class="aim"><b>基金與公益</b>本會為基金和捐贈的保管人，用作推廣和促進文化教育和經濟等多方面交流，以及協助有需要的人士或慈善機構。</div>
+    <div class="sec-h"><h2>本會概況</h2></div>
+    <div class="facts">
+      <div><span>成立日期</span><b class="num">2006 年 9 月 6 日</b></div>
+      <div><span>現有會員</span><b class="num">3,529 人</b></div>
+      <div><span>現屆委員 / 往屆資深委員</span><b class="num">1,306 / 2,229 人</b></div>
+      <div><span>會員來源</span><b>30 省區市 · 15 副省級城市</b></div>
+      <div><span>全國人大代表</span><b class="num">23 人</b></div>
+      <div><span>全國政協委員</span><b class="num">133 人</b></div>
+      <div><span>立法會議員 / 區議員</span><b class="num">44 / 64 人</b></div>
+      <div><span>選舉委員會成員</span><b class="num">502 人</b></div>
+      <div><span>工作委員會</span><b class="num">16 個</b></div>
     </div>
   </section>
   <section class="sec">
-    <div class="sec-h"><h2>組織架構</h2><span class="en">第七屆理事會</span></div>
+    <div class="sec-h"><h2>宗旨</h2></div>
+    <div class="aim"><b>服務國家 · 服務香港 · 服務委員</b>促進香港與祖國內地各方面的交流，積極配合貫徹落實「一國兩制」方針和基本法，支持香港特區政府依法施政，維護香港的長期繁榮穩定發展。</div>
+    <div class="aim"><b>廣泛團結</b>團結香港地區省級政協委員及歷屆委員，積極參與國家現代化建設，促進相互學習和交流，加強與香港各界人士的聯繫。</div>
+    <div class="aim"><b>基金與公益</b>本會為基金和捐贈的保管人，用作推廣和促進文化教育和經濟等多方面交流，以及協助有需要的人士或慈善機構。</div>
+  </section>
+  <section class="sec">
+    <div class="sec-h"><h2>第七屆理事會</h2></div>
     <div class="org">
       <div class="top">
         <div class="lead"><small>主 席</small><b>蘇清棟</b></div>
         <div class="lead"><small>會 長</small><b>霍啟山</b></div>
       </div>
-      <div class="tier"></div>
       <div class="row">
-        <div class="cell"><b>10<i>名</i></b><small>常務副會長</small></div>
-        <div class="cell"><b>13<i>名</i></b><small>副會長</small></div>
-        <div class="cell"><b>3<i>職</i></b><small>秘書長 · 副秘書長 · 司庫</small></div>
+        <div class="cell"><b>10 名</b><small>常務副會長</small></div>
+        <div class="cell"><b>13 名</b><small>副會長</small></div>
+        <div class="cell"><b>另設</b><small>秘書長、副秘書長、司庫</small></div>
       </div>
-      <p style="font-size:12.5px;color:var(--muted);line-height:1.6;margin:12px 2px 0">本屆理事會確立「政治立會，改革強會，奉獻為會，服務興會」的工作方向。董事會成員每屆任期 5 年，主席、會長只任一屆。</p>
+      <p class="tip" style="padding:12px 4px 0">本屆理事會確立「政治立會，改革強會，奉獻為會，服務興會」的工作方向。董事會成員每屆任期 5 年，主席、會長只任一屆。</p>
     </div>
   </section>
   <section class="sec">
-    <div class="sec-h"><h2>工作委員會</h2><span class="en">16 committees</span></div>
-    <div class="chips">
-      <span>會員事務</span><span>社會事務</span><span>經濟</span><span>外事</span><span>學習</span><span>專業</span><span>青年</span><span>婦女</span><span>政制及內地事務</span><span>資深會員事務</span><span>文娛</span><span>體育</span><span>義工</span><span>文宣</span><span>一帶一路及大灣區建設咨詢</span><span>書畫院</span><span class="g">屬會 · 香港政協青年聯會</span>
+    <div class="sec-h"><h2>16 個工作委員會</h2></div>
+    <div class="tags">
+      <span>會員事務</span><span>社會事務</span><span>經濟</span><span>外事</span><span>學習</span><span>專業</span><span>青年</span><span>婦女</span><span>政制及內地事務</span><span>資深會員事務</span><span>文娛</span><span>體育</span><span>義工</span><span>文宣</span><span>一帶一路及大灣區建設咨詢</span><span>書畫院</span><span class="g">屬會：香港政協青年聯會</span>
     </div>
   </section>
   <section class="sec">
-    <div class="sec-h"><h2>團體會員</h2><span class="en">Affiliates</span></div>
-    <div class="chips" id="affiliates"></div>
+    <div class="sec-h"><h2>團體會員</h2></div>
+    <div class="tags" id="affiliates"></div>
   </section>
   <section class="sec">
-    <div class="sec-h"><h2>歷屆理事會</h2><span class="en">Councils</span></div>
+    <div class="sec-h"><h2>歷屆理事會</h2></div>
     <div class="timeline">
       <div class="tl now"><b>第七屆理事會就職典禮</b><small>慶祝中華人民共和國成立七十五周年 · 主席蘇清棟、會長霍啟山</small></div>
-      <div class="tl"><b>第六屆理事會就職典禮</b><small>第六屆</small></div>
-      <div class="tl"><b>第五屆理事會就職典禮</b><small>第五屆</small></div>
-      <div class="tl"><b>第四屆理事會就職典禮</b><small>第四屆</small></div>
-      <div class="tl"><b>第三屆理事會就職典禮</b><small>第三屆</small></div>
-      <div class="tl"><b>第二屆理事會就職典禮</b><small>第二屆</small></div>
+      <div class="tl"><b>第六屆理事會就職典禮</b></div>
+      <div class="tl"><b>第五屆理事會就職典禮</b></div>
+      <div class="tl"><b>第四屆理事會就職典禮</b></div>
+      <div class="tl"><b>第三屆理事會就職典禮</b></div>
+      <div class="tl"><b>第二屆理事會就職典禮</b></div>
       <div class="tl"><b>港區省級政協委員聯誼會成立大會</b><small>2006 年 9 月 6 日 · 香港</small></div>
     </div>
   </section>
   <section class="sec">
-    <div class="sec-h"><h2>章程簡介</h2><span class="en">Constitution</span></div>
+    <div class="sec-h"><h2>章程簡介</h2></div>
     <div class="acc">
       <details><summary>會員</summary><div class="c"><p>凡擔任現屆港區省級政協常委、委員均自動成為本會會員。凡曾擔任港區省級政協常委、委員亦可申請成為本會會員。</p><p>本會會員須繳交入會費和年費。除非會員大會另作規定，100 名會員親自或委派代表出席會員大會，即構成法定人數。每名會員均有一票表決權。</p><p>本港註冊以省級政協委員為主要成員的社團均可申請加入本會，經董事會同意為團體會員。</p></div></details>
       <details><summary>理事會</summary><div class="c"><p>本會主席、會長、常務副會長、副會長、秘書長、副秘書長及司庫為本會董事會成員。董事會成員每屆任期 5 年。主席、會長只任一屆，不可連任，不可交叉任職。</p><p>常務副會長、副會長等其他董事會成員，只要擔任省級政協常委、召集人，不受屆數限制，可連選連任。理事會議之法定人數不得少於 15 名理事。</p></div></details>
       <details><summary>名譽職務</summary><div class="c"><p>董事會可聘請任何人士（包括香港和內地人士）出任贊助人，擔任榮譽或名譽職務。</p><p>註：本會章程經第二屆理事會通過，如需閱讀章程全文，請向各地區召集人索取。</p></div></details>
     </div>
   </section>
-  <section class="sec">
-    <div class="sec-h"><h2>更多</h2><span class="en"></span></div>
-    <div class="lk">
-      <a href="#/contact"><span class="dot"></span>聯絡我們<small>告士打道 160 號</small></a>
-      <a href="#/links"><span class="dot"></span>友情鏈結<small>全國政協 · 地方政協</small></a>
-      <a href="#/notify"><span class="dot"></span>通知公告<small>3 則</small></a>
-    </div>
-  </section>
 </main>
 
-<!-- ================= CONTACT ================= -->
+<!-- ================= 聯絡 ================= -->
 <main class="view" id="v-contact">
-  <div class="map">
-    <div class="road"></div><div class="road2"></div>
-    <div class="pin"><b>海外信托銀行大廈 8 樓</b><i></i></div>
-    <div class="lbl">灣仔 · 告士打道 Gloucester Rd</div><div class="lbl2">WAN CHAI</div>
-  </div>
   <div class="crow">
-    <a href="https://maps.apple.com/?q=160+Gloucester+Road+Wan+Chai+Hong+Kong" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="t"><small>地址</small><b>香港告士打道 160 號海外信托銀行大廈 8 樓</b></span><span class="act">導航</span></a>
-    <a href="tel:+85228778818"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span><span class="t"><small>電話</small><b class="num">(852) 2877 8818</b></span><span class="act">撥號</span></a>
-    <div><span class="ic"><svg viewBox="0 0 24 24"><path d="M6 9V4h12v5M6 18H4v-6h16v6h-2M6 14h12v6H6z"/></svg></span><span class="t"><small>傳真</small><b class="num">(852) 2877 0203</b></span></div>
-    <a href="mailto:info@hkcppcc.org"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></span><span class="t"><small>電郵</small><b>info@hkcppcc.org</b></span><span class="act">寫信</span></a>
+    <a href="https://maps.apple.com/?q=160+Gloucester+Road+Wan+Chai+Hong+Kong" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="t"><small>地址</small><b>香港告士打道 160 號海外信托銀行大廈 8 樓</b></span><span class="act">導航</span></a>
+    <a href="tel:+85228778818"><svg class="i" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span class="t"><small>電話</small><b class="num">(852) 2877 8818</b></span><span class="act">撥號</span></a>
+    <div><svg class="i" viewBox="0 0 24 24"><path d="M6 9V4h12v5M6 18H4v-6h16v6h-2M6 14h12v6H6z"/></svg><span class="t"><small>傳真</small><b class="num">(852) 2877 0203</b></span></div>
+    <a href="mailto:info@hkcppcc.org"><svg class="i" viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg><span class="t"><small>電郵</small><b>info@hkcppcc.org</b></span><span class="act">寫信</span></a>
   </div>
+  <p class="tip" style="margin-top:12px" data-nolang>英文地址：8/F, Overseas Trust Bank Building, 160 Gloucester Road, HKSAR</p>
   <section class="sec">
-    <div class="sec-h"><h2>留言</h2><span class="en">Message</span></div>
+    <div class="sec-h"><h2>留言給我們</h2></div>
     <form class="form" id="msg-form">
       <div class="two">
-        <div><label>姓名</label><input required placeholder="姓名"></div>
+        <div><label>姓名</label><input required></div>
         <div><label>稱謂</label><select><option>先生</option><option>女士</option></select></div>
       </div>
-      <div class="two">
-        <div><label>聯絡電話</label><input required inputmode="tel"></div>
-        <div><label>電郵地址</label><input type="email" required></div>
-      </div>
-      <label>其他信息</label><textarea rows="4" placeholder="請留下您的信息"></textarea>
-      <button class="btn red sub" type="submit">送出</button>
+      <label>聯絡電話</label><input required inputmode="tel">
+      <label>電郵地址</label><input type="email" required>
+      <label>留言內容</label><textarea rows="4"></textarea>
+      <button class="btn pri sub" type="submit">送出留言</button>
       <div class="ok" id="msg-ok">已送出，感謝您的留言。</div>
     </form>
   </section>
 </main>
 
-<!-- ================= NOTIFY ================= -->
+<!-- ================= 公告 ================= -->
 <main class="view" id="v-notify">
-  <div class="sec-h" style="margin-top:18px"><h2>通知公告</h2><span class="en">Notices</span></div>
-  <div class="card list" style="margin:0 16px" id="notify-list"></div>
-  <div class="empty">如需查閱歷史會訊或活動特刊，請聯絡秘書處。</div>
+  <div class="card notice-list" style="margin-top:16px" id="notify-list"></div>
+  <p class="tip" style="margin-top:14px">如需查閱歷史會訊或活動特刊，請聯絡秘書處。</p>
 </main>
 
-<!-- ================= LINKS ================= -->
+<!-- ================= 鏈結 ================= -->
 <main class="view" id="v-links">
-  <div class="sec-h" style="margin-top:18px"><h2>友情鏈結</h2><span class="en">Links</span></div>
+  <div class="sec-h" style="margin-top:22px"><h2>相關機構</h2></div>
   <div class="lk" id="links-main"></div>
-  <div class="sec-h" style="margin-top:24px"><h2>地方政協網站</h2><span class="en">Local CPPCC</span></div>
+  <div class="sec-h" style="margin-top:28px"><h2>地方政協網站</h2></div>
   <div class="prov-links" id="links-prov"></div>
 </main>
 
 <nav class="tabbar" id="tabbar">
-  <a href="#/" data-tab="home"><svg viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9H4z"/><path d="M10 20v-6h4v6"/></svg>首頁</a>
-  <a href="#/news/activity" data-tab="news"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>動態</a>
-  <a href="#/gallery" data-tab="gallery"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 5"/><circle cx="16" cy="9" r="1.5"/></svg>相冊</a>
-  <a href="#/member" data-tab="member"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/></svg>會員</a>
-  <a href="#/about" data-tab="about"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>關於</a>
+  <a href="#/" data-tab="home"><svg class="i" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9H4z"/><path d="M10 20v-6h4v6"/></svg>首頁</a>
+  <a href="#/news/activity" data-tab="news"><svg class="i" viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>動態</a>
+  <a href="#/gallery" data-tab="gallery"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 5"/><circle cx="16" cy="9" r="1.5"/></svg>相冊</a>
+  <a href="#/member" data-tab="member"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/></svg>會員</a>
+  <a href="#/more" data-tab="more"><svg class="i" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>更多</a>
 </nav>
 
 <div class="sheet" id="sheet"><div class="p">
-  <div class="hd"></div><h3>分享到</h3>
+  <h3>分享到</h3>
   <div class="share">
     <button data-share="wechat"><i style="background:#07C160">微信</i>微信好友</button>
     <button data-share="moments"><i style="background:#2C3E50">朋友圈</i>朋友圈</button>
     <button data-share="whatsapp"><i style="background:#25D366">WA</i>WhatsApp</button>
-    <button data-share="copy"><i style="background:var(--gold)">🔗</i>複製連結</button>
+    <button data-share="copy"><i style="background:#B8963E">連結</i>複製連結</button>
   </div>
   <button class="cancel" id="sheet-cancel">取消</button>
 </div></div>
 
 <div class="lightbox" id="lightbox">
-  <div class="bar"><span id="lb-idx" class="num"></span><button id="lb-close" style="font-size:22px;line-height:1">×</button></div>
+  <div class="bar"><span id="lb-idx" class="num"></span><button id="lb-close">關閉</button></div>
   <div class="strip" id="lb-strip"></div>
   <div class="cap" id="lb-cap"></div>
 </div>
 
 <div class="search-ov" id="search">
-  <div class="in"><input id="search-in" placeholder="搜索動態、省市、委員…"><button class="back-btn" id="search-close">取消</button></div>
-  <div class="res" id="search-res"><div class="hint">試試輸入「湖北」「霍啟山」「十五五」</div></div>
+  <div class="in"><input id="search-in" placeholder="輸入關鍵字，例如：湖北、霍啟山"><button class="back-btn" id="search-close">取消</button></div>
+  <div class="res" id="search-res"><div class="hint">可搜尋動態標題、內文、省市與人名</div></div>
 </div>
 <div class="toast" id="toast"></div>
 
 </div></div></div>
 
-<aside class="notes">
-  <div class="kicker">Mobile-first</div>
-  <h2>手機版的新東西</h2>
-  <p>把舊站的「網頁」變成隨手可用的「會員工具」。左側是可操作的原型，直接點按。</p>
+<aside class="notes" data-nolang>
+  <div class="kicker">與上一版的分別</div>
+  <h2>少即是多</h2>
   <ul>
-    <li><b>底部五個分頁</b>：首頁、動態、相冊、會員、關於，拇指範圍內全部可達，小程序化體驗。</li>
-    <li><b>省市往來地圖</b>：把「友好往來」按省市重組，一眼看到聯誼會與哪些省市有交流，點省份即篩選。</li>
-    <li><b>會員服務入口</b>：會員登記、活動報名簽到（可接入現有簽到系統）、意見箱、電子會訊、公眾號集中在一頁。</li>
-    <li><b>文章閱讀體驗</b>：閱讀進度、字號調整、分享到微信 / 朋友圈 / WhatsApp、一鍵複製連結。</li>
-    <li><b>聯絡頁一鍵操作</b>：撥號、導航、寫郵件，不用再抄號碼。</li>
-    <li><b>全站搜索</b>、深色模式、農曆日期、數字動效、相冊全屏瀏覽。</li>
+    <li><b>首頁只留四段</b>：要聞一則、六個大入口、最新動態、通知公告；聯絡電話放在首頁底部，一鍵撥打。</li>
+    <li><b>簡／繁一鍵切換</b>：頂欄常駐，內地來訪的政協領導打開就能看簡體；選擇會記住。</li>
+    <li><b>「大字」按鈕</b>常駐頂欄，一按全站放大；深色模式移到「更多 → 顯示設定」。</li>
+    <li><b>友好往來</b>改為「按省市」下拉篩選，取代原來的 30 格省份圖。</li>
+    <li>底部分頁：首頁、動態、相冊、會員、更多。列表帶縮圖，日期全寫，標題最多兩行。</li>
   </ul>
-  <p style="margin-top:16px"><span class="tag">下一步</span></p>
-  <ul>
-    <li>接後台（後台可用同一套資料結構，一鍵發佈至手機版與微信小程序）。</li>
-    <li>會員登入後：個人資料、我的活動、電子會員證。</li>
-    <li>活動日曆與報名、繁簡切換、英文版。</li>
-  </ul>
+  <p style="margin-top:16px"><span class="kicker">內容</span></p>
+  <p>示範內容取自 hkcppcc.org 現站，每個欄目放了幾條足以展示功能，正式上線時由後台接入全部資料。</p>
 </aside>
 </div>
 
 <script>
-/* ====================== DATA (from hkcppcc.org, Sept 2026) ====================== */
+/* ====================== 資料（取自 hkcppcc.org，2026-09，示範用） ====================== */
 const IMG = {
   f1:"{{IMG_F1}}", f2:"{{IMG_F2}}", f3:"{{IMG_F3}}", f4:"{{IMG_F4}}",
   g1:"{{IMG_G1}}", g2:"{{IMG_G2}}", g3:"{{IMG_G3}}", g4:"{{IMG_G4}}", g5:"{{IMG_G5}}", g6:"{{IMG_G6}}",
-  a1:"{{IMG_A1}}", a2:"{{IMG_A2}}", hero:"{{IMG_HERO}}"
+  a1:"{{IMG_A1}}", a2:"{{IMG_A2}}"
 };
-const CAT = {activity:"最新動態", social:"友好往來", committee:"委員之聲", media:"媒體報道", notify:"通知公告", gallery:"活動相冊"};
+const CAT = {activity:"最新動態", social:"友好往來", committee:"委員之聲", media:"媒體報道"};
 const ARTICLES = [
- {id:"a638", cat:"activity", date:"2026-03-20", prov:"香港", title:"港區省級政協委員聯誼會婦女委員會舉辦「港區巾幗心繫國家 融入大局共譜華章——『十五五』規劃學習座談會」",
+ {id:"a638", cat:"activity", date:"2026-03-20", prov:"香港", title:"婦女委員會舉辦「港區巾幗心繫國家 融入大局共譜華章——『十五五』規劃學習座談會」",
   body:["2026年3月20日下午，港區省級政協委員聯誼會婦女委員會舉辦「港區巾幗心繫國家 融入大局共譜華章——『十五五』規劃學習座談會」。中央政府駐港聯絡辦協調部副部長李玲，行政會議非官守議員召集人、新民黨創會主席葉劉淑儀，全國婦聯常委、香港中旅集團董事劉昆應邀出席。",
   "霍啟山會長出席座談會並致辭，會議由副秘書長兼婦女委員會主任凃雅雅主持。霍啟山會長表示，「十五五」規劃為國家發展定向指路，也給香港發展提供了重要的歷史機遇。他指出大家應共同做好三點：一是深入學習全國「兩會」精神；二是把握「十五五」歷史機遇，主動對接國家發展戰略；三是發揮港區婦女委員的獨特優勢，在融入和服務國家發展大局中展現巾幗擔當。",
   "葉劉淑儀主席應邀作「聚焦『十五五』規劃：以高水平對外開放促改革發展」主題分享，系統解讀了「十五五」規劃的整體框架，並總結出<em>「主動對接、因地制宜」</em>的八字心得。劉昆常委從婦女工作視角，以三個維度分享港區巾幗力量助力香港對接「十五五」規劃的思考。"]},
@@ -753,195 +675,189 @@ const ARTICLES = [
  {id:"a634", cat:"activity", also:"social", date:"2026-01-06", prov:"廣西", img:"f3", title:"攜手奮進創高質 桂港合作開新局——廣西壯族自治區港澳辦副主任宋海軍一行蒞臨聯誼會",
   body:["2026年1月6日下午，廣西壯族自治區港澳辦副主任宋海軍一行蒞臨港區省級政協委員聯誼會指導。聯誼會主席蘇清棟，常務副會長馬浩文、蔡榮星，副會長英煒熱情接待。雙方圍繞「攜手奮進創高質 桂港合作開新局」主題展開座談交流。",
   "蘇清棟主席表示，廣西是國家面向東盟的國際大通道，香港則是聯通世界的國際門戶，桂港優勢互補、合作前景廣闊。聯誼會將積極牽線搭橋，聚焦深化<em>經貿、創科、教育、文旅</em>等重點領域，全力推動桂港深度合作再上新台階。",
-  "宋海軍副主任指出，今年是國家「十五五」規劃的開局之年，廣西正以高水平共建西部陸海新通道為牽引，著力打造面向東盟開放合作的高能級平台。他希望聯誼會進一步發揮橋樑紐帶作用，全方位深化桂港合作。聯誼會出席人員還有青年委員會常務副主任蘇達文，廣西壯族自治區政協常委林梓軒。"]},
+  "宋海軍副主任指出，今年是國家「十五五」規劃的開局之年，廣西正以高水平共建西部陸海新通道為牽引，著力打造面向東盟開放合作的高能級平台。他希望聯誼會進一步發揮橋樑紐帶作用，全方位深化桂港合作。"]},
  {id:"a633", cat:"activity", also:"social", date:"2025-11-19", prov:"北京", img:"f4", title:"首善標準立標桿 京港合作譜華章——北京市海外聯誼會副會長張健一行蒞臨聯誼會",
   body:["2025年11月19日上午，北京市海外聯誼會副會長張健一行蒞臨港區省級政協委員聯誼會指導。聯誼會主席蘇清棟、會長霍啟山，常務副會長馬忠禮，副會長楊莉珊、曾燈發，副秘書長宣武兵、凃雅雅、鄭建好熱情接待。雙方圍繞「首善標準立標桿 京港合作譜華章」主題展開座談交流。",
   "蘇清棟主席表示，北京是國家高質量發展和現代化建設的重要引擎，香港作為粵港澳大灣區的國際金融樞紐與全球資源配置中心，與北京形成資源互補、功能協同的良性互動格局。聯誼會將進一步推動京港戰略聯動、優勢疊加。",
-  "張健副會長充分肯定了聯誼會作為愛國愛港重要力量的不可替代作用。他表示，北京十大高精尖產業規模全部達到千億級，其中三個產業破萬億。希望聯誼會進一步發揮港區委員<em>「雙重積極作用」</em>，促進香港與北京在經貿文化、科技教育、專業人士等領域深層次交流。副會長楊莉珊就促進兩地青年交流和文化合作提出工作建議。"]},
- {id:"c143", cat:"committee", date:"2024-01-08", src:"香港商報", who:"蔡志忠", title:"香港商報 | 蔡志忠：港府決心救市 樓股前景向好", quote:"港府決心救市，樓股前景向好。", body:["聯誼會常委蔡志忠於《香港商報》撰文，分析特區政府近期穩定樓市與股市的政策取向，認為政府展現救市決心，樓股前景向好。"]},
- {id:"c142", cat:"committee", date:"2023-11-06", src:"文匯報", who:"鄭翔玲", title:"文匯報 | 鄭翔玲：美方劣行無法奏效", quote:"美方劣行無法奏效。", body:["鄭翔玲於《文匯報》撰文，批評美方政客粗暴干預中國內政和香港事務的行徑，指其劣行無法奏效。原文刊於文匯報電子版。"]},
- {id:"c141", cat:"committee", date:"2023-11-06", src:"華人頭條", who:"施榮懷", title:"華人頭條 | 施榮懷：強烈譴責美政客粗暴干預中國內政和香港事務", quote:"強烈譴責美政客粗暴干預中國內政和香港事務。", body:["施榮懷於《華人頭條》發表聲明，強烈譴責美國政客粗暴干預中國內政和香港事務。"]},
- {id:"c140", cat:"committee", date:"2023-11-06", src:"香港商報", who:"施榮懷", title:"香港商報 | 施榮懷：美政客叫囂制裁特區官員 純粹是雙重標準的政治炒作", quote:"美政客叫囂制裁特區官員，純粹是雙重標準的政治炒作。", body:["施榮懷接受《香港商報》訪問時指出，美國政客叫囂制裁特區官員，純粹是雙重標準的政治炒作。"]},
- {id:"m199", cat:"media", date:"2023-11-15", src:"中通社", prov:"香港", title:"中通社 | 香港公務員事務局局長楊何蓓茵赴港省聯與政協委員座談", body:["香港公務員事務局局長楊何蓓茵到訪港區省級政協委員聯誼會，與政協委員座談交流。中通社報道。"]},
- {id:"m198", cat:"media", date:"2023-11-13", src:"華人頭條", prov:"青海", title:"華人頭條 | 青海省政協主席公保扎西一行來訪", body:["青海省政協主席公保扎西一行到訪港區省級政協委員聯誼會。華人頭條報道。"]},
- {id:"m197", cat:"media", date:"2023-10-21", src:"", prov:"甘肅", title:"甘肅政協主席莊國泰一行出訪本會", body:["甘肅省政協主席莊國泰一行到訪港區省級政協委員聯誼會。"]},
- {id:"m196", cat:"media", date:"2023-10-12", src:"華人頭條", prov:"西藏", title:"華人頭條 | 西藏自治區人大常委會常務副秘書長韓元林一行來訪港省聯", body:["西藏自治區人大常委會常務副秘書長韓元林一行到訪港區省級政協委員聯誼會。華人頭條報道。"]}
+  "張健副會長充分肯定了聯誼會作為愛國愛港重要力量的不可替代作用。希望聯誼會進一步發揮港區委員<em>「雙重積極作用」</em>，促進香港與北京在經貿文化、科技教育、專業人士等領域深層次交流。副會長楊莉珊就促進兩地青年交流和文化合作提出工作建議。"]},
+ {id:"c143", cat:"committee", date:"2024-01-08", src:"香港商報", title:"蔡志忠：港府決心救市 樓股前景向好", body:["聯誼會常委蔡志忠於《香港商報》撰文，分析特區政府近期穩定樓市與股市的政策取向，認為政府展現救市決心，樓股前景向好。"]},
+ {id:"c142", cat:"committee", date:"2023-11-06", src:"文匯報", title:"鄭翔玲：美方劣行無法奏效", body:["鄭翔玲於《文匯報》撰文，批評美方政客粗暴干預中國內政和香港事務的行徑，指其劣行無法奏效。"]},
+ {id:"c141", cat:"committee", date:"2023-11-06", src:"華人頭條", title:"施榮懷：強烈譴責美政客粗暴干預中國內政和香港事務", body:["施榮懷於《華人頭條》發表聲明，強烈譴責美國政客粗暴干預中國內政和香港事務。"]},
+ {id:"m199", cat:"media", date:"2023-11-15", src:"中通社", prov:"香港", title:"香港公務員事務局局長楊何蓓茵赴港省聯與政協委員座談", body:["香港公務員事務局局長楊何蓓茵到訪港區省級政協委員聯誼會，與政協委員座談交流。中通社報道。"]},
+ {id:"m198", cat:"media", date:"2023-11-13", src:"華人頭條", prov:"青海", title:"青海省政協主席公保扎西一行來訪", body:["青海省政協主席公保扎西一行到訪港區省級政協委員聯誼會。華人頭條報道。"]},
+ {id:"m197", cat:"media", date:"2023-10-21", src:"", prov:"甘肅", title:"甘肅政協主席莊國泰一行出訪本會", body:["甘肅省政協主席莊國泰一行到訪港區省級政協委員聯誼會。"]}
 ];
 const GALLERY = [
  {id:"g448", date:"2025-04-01", prov:"安徽", img:"g6", title:"皖港深度協作 戰略疊加共贏——安徽省政協副主席孫雲飛一行來訪"},
- {id:"g447", date:"2025-03", prov:"香港", img:"g5", title:"港區省級政協委員聯誼會召開三月會長工作會議、召集人工作會議"},
+ {id:"g447", date:"2025-03", prov:"香港", img:"g5", title:"聯誼會召開三月會長工作會議、召集人工作會議"},
  {id:"g446", date:"2025-03", prov:"四川", img:"g4", title:"四川省政協主席田向利一行來訪"},
- {id:"g444", date:"2025-03", prov:"香港", img:"g3", title:"聯誼會舉辦「深入學習全國『兩會』精神，更好發揮港區政協委員『雙重積極作用』」學習會"},
+ {id:"g444", date:"2025-03", prov:"香港", img:"g3", title:"「深入學習全國『兩會』精神，更好發揮港區政協委員『雙重積極作用』」學習會"},
  {id:"g443", date:"2025-03", prov:"泉州", img:"g2", title:"泉州台商投資區黨工委書記蘇延輝一行來訪"},
  {id:"g442", date:"2025-03", prov:"杭州", img:"g1", title:"杭州市委常委、統戰部部長朱建明一行來訪"}
 ];
 const NOTICES = [
- {id:"n3", date:"2022-07-30", title:"港區省級政協委員聯誼會會務意見箱", desc:"您的意見是最寶貴的財富，感謝您對聯誼會的會務發展提出寶貴的建議與意見！"},
- {id:"n1", date:"2022-07-30", title:"港區省級政協委員聯誼會電子會訊及活動特刊合集", desc:"歷期電子會訊與活動特刊，可在線翻閱。"},
- {id:"n2", date:"2022-07-30", title:"港區省級政協委員聯誼會官方公眾號", desc:"微信搜索「港區省級政協委員聯誼會」關注，接收最新動態。"}
+ {id:"n3", date:"2022-07-30", title:"會務意見箱", desc:"您的意見是最寶貴的財富，歡迎對聯誼會的會務發展提出建議。"},
+ {id:"n1", date:"2022-07-30", title:"電子會訊及活動特刊合集", desc:"歷期電子會訊與活動特刊，可在線翻閱。"},
+ {id:"n2", date:"2022-07-30", title:"官方微信公眾號", desc:"微信搜尋「港區省級政協委員聯誼會」關注，接收最新動態。"}
 ];
-const PROVS = ["北京","天津","河北","山西","內蒙古","遼寧","吉林","黑龍江","上海","江蘇","浙江","安徽","福建","江西","山東","河南","湖北","湖南","廣東","廣西","海南","重慶","四川","貴州","雲南","西藏","陝西","甘肅","青海","寧夏"];
-const CITY_TO_PROV = {杭州:"浙江",泉州:"福建",深圳:"廣東",廣州:"廣東",長春:"吉林"};
 const AFFILIATES = ["遼寧","上海","浙江","安徽","福建","江西","山東","廣東","廣西","海南","重慶","四川","雲南","陝西","甘肅","青海","長春","杭州","廣州","深圳"];
 const LINKS_MAIN = [
  ["中國人民政治協商會議全國委員會","cppcc.gov.cn","http://www.cppcc.gov.cn/"],
  ["中華海外聯誼會","cofa.org.cn","http://www.cofa.org.cn/"],
  ["香港特別行政區政府","gov.hk","http://www.gov.hk/"],
  ["中央人民政府駐香港特別行政區聯絡辦公室","locpg.hk","http://www.locpg.hk/"],
- ["外交部駐香港特別行政區特派員公署","fmcoprc.gov.hk","http://www.fmcoprc.gov.hk/chn/"],
  ["國務院港澳事務辦公室","hmo.gov.cn","http://www.hmo.gov.cn/"],
  ["香港友好協進會","fhka.com.hk","http://www.fhka.com.hk/"],
  ["香港政協青年聯會","hkcppccya.org","http://www.hkcppccya.org/"],
- ["香港廣西社團總會","hkgx.hk","http://www.hkgx.hk/"],
- ["海南省港區政協委員聯誼會","hnhkcppcc.org","http://www.hnhkcppcc.org"],
- ["廣州地區政協香港委員聯誼會","gmchk.net","http://www.gmchk.net/"],
- ["香港重慶總會","hkcqff.org","http://www.hkcqff.org/"],
- ["一帶一路高峰論壇","beltandroadsummit.hk","https://www.beltandroadsummit.hk"],
- ["香港陝西社團聯合總會","shaanxi.hk","http://www.shaanxi.hk/"]
+ ["海南省港區政協委員聯誼會","hnhkcppcc.org","http://www.hnhkcppcc.org"]
 ];
-const LINKS_PROV = ["北京","天津","河北","山西","內蒙古","遼寧","瀋陽*","大連*","吉林","長春*","黑龍江","哈爾濱*","上海","江蘇","南京*","浙江","杭州*","寧波*","安徽","福建","廈門*","江西","山東","濟南*","青島*","河南","湖北","武漢*","湖南","廣東","廣州*","深圳*","廣西","海南","重慶","四川","成都*","貴州","雲南","陝西","西安*","甘肅","青海","寧夏"];
+const LINKS_PROV = ["北京","天津","河北","山西","內蒙古","遼寧","吉林","黑龍江","上海","江蘇","浙江","安徽","福建","江西","山東","河南","湖北","湖南","廣東","廣西","海南","重慶","四川","貴州","雲南","陝西","甘肅","青海","寧夏","深圳","杭州","廣州"];
 
-/* ====================== helpers ====================== */
+/* ====================== 簡繁轉換（建置時由 zhconv 生成字表） ====================== */
+const T2S = {{T2S}};
+const S2T = Object.fromEntries(Object.entries(T2S).map(([t,s])=>[s,t]));
+const toS = s=>s.replace(/[㐀-鿿]/g,c=>T2S[c]||c);
+let lang="zh-Hant";
+function applyLang(rootEl=document.body){
+  const walker=document.createTreeWalker(rootEl,NodeFilter.SHOW_TEXT);
+  const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(n=>{
+    if(n.parentNode.closest && n.parentNode.closest("[data-nolang],script,style")) return;
+    if(n.__o===undefined) n.__o=n.nodeValue;
+    n.nodeValue = lang==="zh-Hans" ? toS(n.__o) : n.__o;
+  });
+  $$("[placeholder]",rootEl).forEach(el=>{ if(el.__o===undefined) el.__o=el.placeholder; el.placeholder = lang==="zh-Hans" ? toS(el.__o) : el.__o; });
+  document.documentElement.lang=lang;
+  $$("#btn-lang,#btn-lang2").forEach(b=>b.textContent = lang==="zh-Hans" ? "繁" : "簡");
+  $("#lg-t").classList.toggle("on",lang==="zh-Hant"); $("#lg-s").classList.toggle("on",lang==="zh-Hans");
+}
+function toggleLang(){ lang = lang==="zh-Hans" ? "zh-Hant" : "zh-Hans"; try{localStorage.setItem("hkcppcc-lang",lang)}catch(_){} applyLang(); toast(lang==="zh-Hans"?"已切换为简体":"已切換為繁體"); }
+
+/* ====================== 工具 ====================== */
 const $ = (s,el=document)=>el.querySelector(s);
 const $$ = (s,el=document)=>[...el.querySelectorAll(s)];
 const esc = s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const CHEV = '<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>';
+function fmtDate(d){ const [y,m,dd]=d.split("-"); return dd ? `${y}年${+m}月${+dd}日` : `${y}年${+m}月`; }
 function byCat(cat){ return ARTICLES.filter(a=>a.cat===cat||a.also===cat); }
-function dparts(d){ const [y,m,dd]=d.split("-"); return {y,m,d:dd||""}; }
 function itemHTML(a, opts={}){
-  const p=dparts(a.date);
-  const tag = opts.tag!==false ? `<span class="chip${a.cat==='committee'?' gold':(a.cat==='media'?' navy':'')}">${CAT[a.cat]}</span>` : "";
-  const prov = a.prov && a.prov!=="香港" ? `<span class="chip gold">${esc(a.prov)}</span>`:"";
-  const src = a.src ? `<span>${esc(a.src)}</span>`:"";
-  return `<a class="item" href="#/article/${a.id}">
-    <span class="d num"><b>${p.d||p.m}</b><small>${p.d?p.y+"."+p.m:p.y}</small></span>
-    <span style="flex:1;min-width:0"><span class="tt">${esc(a.title.replace(/^[^|]+\|\s*/,''))}</span><span class="meta">${tag}${prov}${src}</span></span>${CHEV}</a>`;
+  const thumb = a.img ? `<span class="th" style="background-image:url('${IMG[a.img]}')"></span>` : "";
+  const bits=[`<span class="num">${fmtDate(a.date)}</span>`];
+  if(opts.cat) bits.unshift(`<span class="tag">${CAT[a.cat]}</span>`);
+  if(a.prov && a.prov!=="香港") bits.push(`<span>${esc(a.prov)}</span>`);
+  if(a.src) bits.push(`<span>${esc(a.src)}</span>`);
+  return `<a class="item" href="#/article/${a.id}">${thumb}<span style="flex:1;min-width:0"><span class="tt">${esc(a.title)}</span><span class="meta">${bits.join("")}</span></span><span class="chev">›</span></a>`;
 }
-function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("on"); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("on"),1800); }
+function galItemHTML(g){ return `<a class="item" href="#/gallery/${g.id}"><span class="th" style="background-image:url('${IMG[g.img]}')"></span><span style="flex:1;min-width:0"><span class="tt">${esc(g.title)}</span><span class="meta"><span class="tag">活動相冊</span><span class="num">${fmtDate(g.date)}</span></span></span><span class="chev">›</span></a>`; }
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("on"); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("on"),2000); }
 
-/* ====================== render: home ====================== */
-(function renderHome(){
-  const d=new Date(); const wd="日一二三四五六"[d.getDay()];
-  $("#today").textContent=`${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日 星期${wd}`;
-  const feats=["a636","a635","a634","a633"].map(id=>ARTICLES.find(a=>a.id===id));
-  $("#feat").innerHTML=feats.map(a=>`<a class="fcard" href="#/article/${a.id}">
-    <div class="ph" style="background-image:url('${IMG[a.img]}')"><span class="tag">友好往來</span><span class="prov">${esc(a.prov)}</span></div>
-    <div class="b"><h3>${esc(a.title)}</h3><div class="m num">${a.date}</div></div></a>`).join("");
-  $("#home-activity").innerHTML=byCat("activity").slice(0,4).map(a=>itemHTML(a,{tag:false})).join("");
-  $("#home-media").innerHTML=byCat("media").slice(0,4).map(a=>itemHTML(a,{tag:false})).join("");
-  $("#home-voice").innerHTML=byCat("committee").map(a=>`<a class="vcard" href="#/article/${a.id}"><span class="q">“</span><div class="who">${esc(a.who)}</div><div class="src">${esc(a.src)} · <span class="num">${a.date}</span></div><p>${esc(a.quote)}</p></a>`).join("");
-  $("#home-gallery").innerHTML=GALLERY.slice(0,4).map(g=>`<a class="gal" href="#/gallery/${g.id}"><div class="ph" style="background-image:url('${IMG[g.img]}')"></div><div class="b"><span>${esc(g.title)}</span></div><div class="m num">${g.date}</div></a>`).join("");
-  $("#home-notice").innerHTML=NOTICES.map((n,i)=>`<a href="#/notify"><i>${["意","訊","號"][i]}</i>${esc(n.title.replace("港區省級政協委員聯誼會",""))}<small class="num">${n.date}</small></a>`).join("");
-  // province map
-  const all=[...ARTICLES.filter(a=>a.prov),...GALLERY].map(x=>({...x, p:CITY_TO_PROV[x.prov]||x.prov}));
-  const counts={}; all.forEach(x=>{ if(x.p!=="香港") counts[x.p]=(counts[x.p]||0)+1; });
-  const grid=$("#prov-grid");
-  grid.innerHTML=PROVS.map(p=>`<button class="prov${counts[p]?' hot':''}" data-p="${p}" data-n="${counts[p]||''}">${p}</button>`).join("");
-  const list=$("#prov-list");
-  let sel=null;
-  grid.addEventListener("click",e=>{
-    const b=e.target.closest(".prov"); if(!b) return;
-    const p=b.dataset.p;
-    sel = sel===p ? null : p;
-    $$(".prov",grid).forEach(x=>{ x.classList.toggle("sel",x.dataset.p===sel); x.classList.toggle("dim",!!sel && x.dataset.p!==sel); });
-    if(!sel){ list.innerHTML=""; $("#prov-note").textContent="紅色為近期有交流往來的省市，點按可查看相關動態。聯誼會會員來自全國 30 個省、自治區、直轄市及 15 個副省級城市。"; return; }
-    const items=all.filter(x=>x.p===sel);
-    $("#prov-note").textContent = items.length ? `${sel} · ${items.length} 條往來記錄` : `${sel} · 暫無近期往來記錄，聯誼會有來自${sel}的港區政協委員會員。`;
-    list.innerHTML=items.map(x=> x.cat ? itemHTML(x) : `<a class="item" href="#/gallery/${x.id}"><span class="d num"><b>${x.date.slice(5,7)}</b><small>${x.date.slice(0,4)}</small></span><span style="flex:1;min-width:0"><span class="tt">${esc(x.title)}</span><span class="meta"><span class="chip navy">活動相冊</span></span></span>${CHEV}</a>`).join("");
-  });
+/* ====================== 首頁 ====================== */
+(function(){
+  const d=new Date(); $("#today").textContent=`${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日 星期${"日一二三四五六"[d.getDay()]}`;
+  const f=ARTICLES.find(a=>a.id==="a636");
+  const fe=$("#featured"); fe.href="#/article/"+f.id;
+  fe.innerHTML=`<div class="ph" style="background-image:url('${IMG[f.img]}')"></div><div class="b"><div class="k">要聞</div><h3>${esc(f.title)}</h3><div class="d num">${fmtDate(f.date)} · 友好往來</div></div>`;
+  $("#home-activity").innerHTML=byCat("activity").slice(0,4).map(a=>itemHTML(a)).join("");
+  $("#home-social").innerHTML=byCat("social").slice(0,3).map(a=>itemHTML(a)).join("");
+  $("#home-notice").innerHTML=NOTICES.map(n=>`<a href="#/notify"><span class="dot"></span><span><b>${esc(n.title)}</b><small class="num">${fmtDate(n.date)}</small></span></a>`).join("");
 })();
 
-/* ====================== render: other static lists ====================== */
-$("#gallery-grid").innerHTML=GALLERY.map(g=>`<a class="gal" href="#/gallery/${g.id}"><div class="ph" style="background-image:url('${IMG[g.img]}')"></div><div class="b"><span>${esc(g.title)}</span></div><div class="m num">${g.date}${g.prov&&g.prov!=="香港"?" · "+g.prov:""}</div></a>`).join("");
-$("#notify-list").innerHTML=NOTICES.map(n=>`<a class="item" href="#/notify" onclick="toast('請於正式版接入對應頁面')"><span class="d num"><b>${n.date.slice(8)}</b><small>${n.date.slice(0,7).replace('-','.')}</small></span><span style="flex:1;min-width:0"><span class="tt">${esc(n.title)}</span><span class="meta" style="white-space:normal">${esc(n.desc)}</span></span>${CHEV}</a>`).join("");
+/* ====================== 其他靜態列表 ====================== */
+$("#gallery-list").innerHTML=GALLERY.map(g=>`<a class="gal" href="#/gallery/${g.id}"><div class="ph" style="background-image:url('${IMG[g.img]}')"></div><div class="b"><b>${esc(g.title)}</b><small class="num">${fmtDate(g.date)}${g.prov&&g.prov!=="香港"?" · "+g.prov:""}</small></div></a>`).join("");
+$("#notify-list").innerHTML=NOTICES.map(n=>`<a href="#/notify" onclick="toast('正式版將接入對應頁面')"><span class="dot"></span><span><b>${esc(n.title)}</b><small>${esc(n.desc)}</small><small class="num">${fmtDate(n.date)}</small></span></a>`).join("");
 $("#affiliates").innerHTML=AFFILIATES.map(a=>`<span>${a}</span>`).join("");
-$("#links-main").innerHTML=LINKS_MAIN.map(([n,h,u])=>`<a href="${u}" target="_blank" rel="noopener"><span class="dot"></span>${esc(n)}<small>${h}</small></a>`).join("");
-$("#links-prov").innerHTML=LINKS_PROV.map(p=>{ const sub=p.endsWith("*"); return `<a class="${sub?'sub':''}" href="#" onclick="event.preventDefault();toast('正式版將鏈接至${p.replace('*','')}政協網站')">${p.replace("*","")}</a>`; }).join("");
+$("#links-main").innerHTML=LINKS_MAIN.map(([n,h,u])=>`<a href="${u}" target="_blank" rel="noopener"><span class="t">${esc(n)}<small data-nolang>${h}</small></span><span class="chev" style="color:var(--hair)">›</span></a>`).join("");
+$("#links-prov").innerHTML=LINKS_PROV.map(p=>`<a href="#" onclick="event.preventDefault();toast('正式版將鏈接至${p}政協網站')">${p}</a>`).join("");
 
-/* ====================== news ====================== */
+/* ====================== 動態 ====================== */
+const PROVS_IN_SOCIAL=[...new Set(byCat("social").map(a=>a.prov).filter(p=>p&&p!=="香港"))];
+$("#prov-sel").innerHTML+=PROVS_IN_SOCIAL.map(p=>`<option>${p}</option>`).join("");
+let curCat="activity";
 function renderNews(cat){
+  curCat=cat;
   $$("#segs button").forEach(b=>b.classList.toggle("on",b.dataset.cat===cat));
-  $("#news-list").innerHTML=byCat(cat).map(a=>itemHTML(a,{tag:false})).join("")||`<div class="empty">暫無內容</div>`;
+  $("#prov-filter").hidden = cat!=="social";
+  const p=$("#prov-sel").value;
+  const items=byCat(cat).filter(a=>!(cat==="social"&&p)||a.prov===p);
+  $("#news-list").innerHTML=items.map(a=>itemHTML(a)).join("")||`<div class="empty">暫無內容</div>`;
+  applyLang($("#v-news"));
 }
 $("#segs").addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) location.hash="#/news/"+b.dataset.cat; });
+$("#prov-sel").addEventListener("change",()=>renderNews(curCat));
 
-/* ====================== article ====================== */
-let fs=16;
+/* ====================== 文章 ====================== */
 function renderArticle(id){
   const a=ARTICLES.find(x=>x.id===id); if(!a){ location.hash="#/"; return; }
-  const rel=ARTICLES.filter(x=>x.id!==id && (x.cat===a.cat || (a.prov && x.prov===a.prov))).slice(0,3);
-  const figs=(a.imgs||(a.img?[a.img]:[])).map((k,i)=>`<figure><img src="${IMG[k]}" alt=""><figcaption>${i===0?esc(a.title.split("——")[0]):"座談交流現場"}</figcaption></figure>`).join("");
+  const rel=ARTICLES.filter(x=>x.id!==id && (x.cat===a.cat || (a.prov && a.prov!=="香港" && x.prov===a.prov))).slice(0,3);
+  const keys=a.imgs||(a.img?[a.img]:[]);
+  const fig=(k,cap)=>`<figure><img src="${IMG[k]}" alt=""><figcaption>${cap}</figcaption></figure>`;
+  const paras=a.body.map((p,i)=>`<p>${p}</p>`+(i===1&&keys[1]?fig(keys[1],"座談交流現場"):"")).join("");
   $("#art").innerHTML=`
-    <div class="kick"><span class="chip">${CAT[a.cat]}</span>${a.also?`<span class="chip">${CAT[a.also]}</span>`:""}${a.prov&&a.prov!=="香港"?`<span class="chip gold">${esc(a.prov)}</span>`:""}${a.src?`<span>${esc(a.src)}</span>`:""}</div>
+    <div class="kick">${CAT[a.cat]}${a.also?" · "+CAT[a.also]:""}${a.src?" · "+esc(a.src):""}</div>
     <h1>${esc(a.title)}</h1>
-    <div class="date num">${a.date.replace(/-/g," · ")}</div>
+    <div class="date num">${fmtDate(a.date)}${a.prov&&a.prov!=="香港"?" · "+esc(a.prov):""}</div>
     <div class="tools">
-      <button id="fs-btn"><svg viewBox="0 0 24 24"><path d="M4 18 10 5l6 13M6 14h8M17 12h5M19.5 9.5v5"/></svg>字號</button>
-      <button id="share-btn2"><svg viewBox="0 0 24 24"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 3v13M7 8l5-5 5 5"/></svg>分享</button>
-      <button id="copy-btn"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>複製連結</button>
+      <button id="fs-btn"><svg class="i" viewBox="0 0 24 24"><path d="M4 18 10 5l6 13M6 14h8M17 12h5M19.5 9.5v5"/></svg>放大字體</button>
+      <button id="share-btn2"><svg class="i" viewBox="0 0 24 24"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 3v13M7 8l5-5 5 5"/></svg>分享</button>
     </div>
-    ${figs.split("</figure>")[0] ? figs.split("</figure>")[0]+"</figure>" : ""}
-    <div class="body" style="--fs:${fs}px">${a.body.map((p,i)=>`<p>${p}</p>`+(i===1&&figs.split("</figure>")[1]?figs.split("</figure>")[1]+"</figure>":"")).join("")}</div>
+    ${keys[0]?fig(keys[0],esc(a.title.split("——")[0])):""}
+    <div class="body">${paras}</div>
     <div class="end">◆ ◆ ◆</div>
-    ${rel.length?`<div class="sec-h" style="padding:0"><h2 style="font-size:17px">延伸閱讀</h2></div><div class="card list rel">${rel.map(r=>itemHTML(r)).join("")}</div>`:""}`;
+    ${rel.length?`<div class="sec-h" style="padding:0"><h2 style="font-size:1.15em">延伸閱讀</h2></div><div class="card list" style="margin:0">${rel.map(r=>itemHTML(r,{cat:true})).join("")}</div>`:""}
+    <a class="btn sec wide" href="#/news/${a.cat}" style="margin-top:22px">返回${CAT[a.cat]}列表</a>`;
   $("#page-title").textContent=CAT[a.cat];
-  $("#fs-btn").onclick=()=>{ fs = fs>=19?15:fs+2; $("#art .body").style.setProperty("--fs",fs+"px"); toast("字號 "+fs); };
+  $("#fs-btn").onclick=toggleBig;
   $("#share-btn2").onclick=openSheet;
-  $("#copy-btn").onclick=()=>copyLink();
+  applyLang($("#v-article"));
 }
 
-/* ====================== gallery lightbox ====================== */
+/* ====================== 相冊全屏 ====================== */
 function openGallery(id){
   const g=GALLERY.find(x=>x.id===id); if(!g) return;
   const imgs=[g.img, ...GALLERY.filter(x=>x.id!==id).slice(0,2).map(x=>x.img)];
   $("#lb-strip").innerHTML=imgs.map(k=>`<div><img src="${IMG[k]}" alt=""></div>`).join("");
-  $("#lb-cap").textContent=g.title; $("#lb-idx").textContent=`1 / ${imgs.length}`;
-  $("#lightbox").classList.add("on");
-  $("#lb-strip").scrollLeft=0;
-  $("#lb-strip").onscroll=()=>{ const s=$("#lb-strip"); const i=Math.round(s.scrollLeft/s.clientWidth)+1; $("#lb-idx").textContent=`${i} / ${imgs.length}`; };
+  $("#lb-cap").textContent=lang==="zh-Hans"?toS(g.title):g.title; $("#lb-idx").textContent=`1 / ${imgs.length}`;
+  $("#lightbox").classList.add("on"); $("#lb-strip").scrollLeft=0;
+  $("#lb-strip").onscroll=()=>{ const s=$("#lb-strip"); $("#lb-idx").textContent=`${Math.round(s.scrollLeft/s.clientWidth)+1} / ${imgs.length}`; };
 }
 $("#lb-close").onclick=()=>{ $("#lightbox").classList.remove("on"); if(location.hash.startsWith("#/gallery/")) history.back(); };
 
-/* ====================== share sheet / copy ====================== */
+/* ====================== 分享 ====================== */
 function openSheet(){ $("#sheet").classList.add("on"); }
 $("#sheet-cancel").onclick=()=>$("#sheet").classList.remove("on");
 $("#sheet").addEventListener("click",e=>{ if(e.target.id==="sheet") $("#sheet").classList.remove("on"); const b=e.target.closest("[data-share]"); if(!b) return; $("#sheet").classList.remove("on"); if(b.dataset.share==="copy") copyLink(); else toast("正式版將調用"+b.textContent.trim()+"分享"); });
-function copyLink(){ const u=location.href; (navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>toast("連結已複製"),()=>toast("請長按網址複製")); }
+function copyLink(){ (navigator.clipboard?navigator.clipboard.writeText(location.href):Promise.reject()).then(()=>toast("連結已複製"),()=>toast("請長按網址複製")); }
 $("#btn-share").onclick=openSheet;
 
-/* ====================== search ====================== */
+/* ====================== 搜尋 ====================== */
 $("#btn-search").onclick=()=>{ $("#search").classList.add("on"); setTimeout(()=>$("#search-in").focus(),50); };
 $("#search-close").onclick=()=>$("#search").classList.remove("on");
 $("#search-in").addEventListener("input",e=>{
   const q=e.target.value.trim(); const res=$("#search-res");
-  if(!q){ res.innerHTML=`<div class="hint">試試輸入「湖北」「霍啟山」「十五五」</div>`; return; }
-  const hits=ARTICLES.filter(a=>(a.title+a.body.join("")+(a.prov||"")+(a.who||"")).includes(q));
-  const gh=GALLERY.filter(g=>(g.title+g.prov).includes(q));
-  res.innerHTML=(hits.length||gh.length)?`<div class="card list">${hits.map(a=>itemHTML(a)).join("")}${gh.map(g=>`<a class="item" href="#/gallery/${g.id}"><span class="d num"><b>${g.date.slice(5,7)}</b><small>${g.date.slice(0,4)}</small></span><span style="flex:1"><span class="tt">${esc(g.title)}</span><span class="meta"><span class="chip navy">活動相冊</span></span></span>${CHEV}</a>`).join("")}</div>`:`<div class="hint">沒有找到「${esc(q)}」相關內容</div>`;
+  if(!q){ res.innerHTML=`<div class="hint">可搜尋動態標題、內文、省市與人名</div>`; applyLang(res); return; }
+  const qt=q.replace(/[㐀-鿿]/g,c=>S2T[c]||c); // 簡體輸入也能搜到繁體內容
+  const hits=ARTICLES.filter(a=>(a.title+a.body.join("")+(a.prov||"")).includes(qt)||(a.title+a.body.join("")).includes(q));
+  const gh=GALLERY.filter(g=>(g.title+g.prov).includes(qt));
+  res.innerHTML=(hits.length||gh.length)?`<div class="card list">${hits.map(a=>itemHTML(a,{cat:true})).join("")}${gh.map(galItemHTML).join("")}</div>`:`<div class="hint">沒有找到「${esc(q)}」相關內容</div>`;
+  applyLang(res);
 });
 $("#search-res").addEventListener("click",e=>{ if(e.target.closest("a")) $("#search").classList.remove("on"); });
 
-/* ====================== theme ====================== */
-$("#btn-theme").onclick=()=>{
-  const r=document.documentElement; const dark = r.dataset.theme==="dark" || (!r.dataset.theme && matchMedia("(prefers-color-scheme: dark)").matches);
-  r.dataset.theme = dark ? "light" : "dark"; try{localStorage.setItem("hkcppcc-theme",r.dataset.theme)}catch(_){}
-};
-try{ const t=localStorage.getItem("hkcppcc-theme"); if(t) document.documentElement.dataset.theme=t; }catch(_){}
+/* ====================== 大字 / 深色 / 簡繁 ====================== */
+const root=document.documentElement;
+function syncSw(){ $("#sw-big").classList.toggle("on",root.dataset.big==="1"); $("#btn-big").classList.toggle("on",root.dataset.big==="1");
+  const dark = root.dataset.theme==="dark" || (!root.dataset.theme && matchMedia("(prefers-color-scheme: dark)").matches); $("#sw-dark").classList.toggle("on",dark); }
+function toggleBig(){ root.dataset.big = root.dataset.big==="1" ? "0" : "1"; try{localStorage.setItem("hkcppcc-big",root.dataset.big)}catch(_){} syncSw(); toast(root.dataset.big==="1"?"已切換為大字模式":"已恢復標準字號"); }
+function toggleDark(){ const dark = root.dataset.theme==="dark" || (!root.dataset.theme && matchMedia("(prefers-color-scheme: dark)").matches); root.dataset.theme = dark?"light":"dark"; try{localStorage.setItem("hkcppcc-theme",root.dataset.theme)}catch(_){} syncSw(); }
+$("#btn-big").onclick=toggleBig; $("#set-big").onclick=toggleBig; $("#set-dark").onclick=toggleDark;
+$("#btn-lang").onclick=toggleLang; $("#btn-lang2").onclick=toggleLang; $("#set-lang").onclick=toggleLang;
+try{ const t=localStorage.getItem("hkcppcc-theme"); if(t) root.dataset.theme=t; const b=localStorage.getItem("hkcppcc-big"); if(b==="1") root.dataset.big="1"; const l=localStorage.getItem("hkcppcc-lang"); if(l) lang=l; }catch(_){}
+syncSw();
 
-/* ====================== forms ====================== */
-["reg","msg"].forEach(k=>{ $("#"+k+"-form").addEventListener("submit",e=>{ e.preventDefault(); $("#"+k+"-ok").style.display="block"; toast("已提交（示範）"); }); });
+/* ====================== 表單 ====================== */
+["reg","msg"].forEach(k=>{ $("#"+k+"-form").addEventListener("submit",e=>{ e.preventDefault(); $("#"+k+"-ok").style.display="block"; toast(lang==="zh-Hans"?"已提交（示范）":"已提交（示範）"); }); });
 
-/* ====================== count-up + reveal ====================== */
-function reveal(el){ if(el.classList.contains("in")) return; el.classList.add("in");
-  $$(".cnt",el).forEach(n=>{ const to=+n.dataset.to; const t0=performance.now(); const dur=1100;
-    const step=t=>{ const k=Math.min(1,(t-t0)/dur); n.textContent=Math.round(to*(1-Math.pow(1-k,3))).toLocaleString(); if(k<1) requestAnimationFrame(step); }; requestAnimationFrame(step); }); }
-const io=new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ reveal(en.target); io.unobserve(en.target); } }),{threshold:.15});
-$$(".reveal").forEach(el=>io.observe(el));
-setTimeout(()=>$$(".reveal").forEach(reveal),3000); // 保底：觀察器失效時也要顯示
-
-/* ====================== router ====================== */
-const app=$("#app"); const scroller = matchMedia("(min-width:900px)").matches ? app : window;
-const scrollPos={};
+/* ====================== 路由 ====================== */
+const app=$("#app"); const desktop=matchMedia("(min-width:900px)").matches;
 function route(){
   const h=location.hash||"#/"; const parts=h.slice(2).split("/"); const seg=parts[0]||"home";
   let view="home", tab="home", title="", sub=false;
@@ -949,25 +865,19 @@ function route(){
   else if(seg==="article"){ view="article"; tab="news"; sub=true; renderArticle(parts[1]); title=$("#page-title").textContent; }
   else if(seg==="gallery"){ view="gallery"; tab="gallery"; if(parts[1]) openGallery(parts[1]); }
   else if(seg==="member"){ view="member"; tab="member"; }
-  else if(seg==="about"){ view="about"; tab="about"; }
-  else if(seg==="contact"){ view="contact"; tab="about"; sub=true; title="聯絡我們"; }
-  else if(seg==="notify"){ view="notify"; tab="about"; sub=true; title="通知公告"; }
-  else if(seg==="links"){ view="links"; tab="about"; sub=true; title="友情鏈結"; }
+  else if(seg==="more"){ view="more"; tab="more"; }
+  else if(seg==="about"){ view="about"; tab="more"; sub=true; title="關於本會"; }
+  else if(seg==="contact"){ view="contact"; tab="more"; sub=true; title="聯絡我們"; }
+  else if(seg==="notify"){ view="notify"; tab="more"; sub=true; title="通知公告"; }
+  else if(seg==="links"){ view="links"; tab="more"; sub=true; title="友情鏈結"; }
   $$(".view").forEach(v=>v.classList.toggle("on",v.id==="v-"+view));
   $$("#tabbar a").forEach(a=>a.classList.toggle("on",a.dataset.tab===tab));
-  $("#top-home").hidden=sub; $("#top-sub").hidden=!sub; if(sub) $("#page-title").textContent=title;
-  $("#progress").style.width="0";
-  if(view!=="gallery" || !parts[1]) { (scroller===window?window:app).scrollTo({top:0}); }
-  if(h.includes("#checkin")) setTimeout(()=>{ toast("正式版將跳轉至活動簽到系統"); },200);
-  if(view==="member" && h.endsWith("#reg")) setTimeout(()=>$("#reg").scrollIntoView({behavior:"smooth"}),50);
+  $("#top-home").hidden=sub; $("#top-sub").hidden=!sub;
+  if(sub){ const pt=$("#page-title"); pt.__o=title; pt.textContent = lang==="zh-Hans" ? toS(title) : title; }
+  if(view!=="gallery" || !parts[1]) (desktop?app:window).scrollTo({top:0});
+  if(h.includes("#checkin")) setTimeout(()=>toast("正式版將跳轉至活動簽到系統"),200);
 }
 addEventListener("hashchange",route); route();
+applyLang();
 $("#btn-back").onclick=()=>{ if(history.length>1) history.back(); else location.hash="#/"; };
-app.addEventListener("click",e=>{ const a=e.target.closest('a[href="#reg"]'); if(a){ e.preventDefault(); $("#reg").scrollIntoView({behavior:"smooth"}); } });
-(scroller===window?window:app).addEventListener("scroll",()=>{
-  if(!$("#v-article").classList.contains("on")) return;
-  const el = scroller===window?document.documentElement:app;
-  const max=el.scrollHeight-el.clientHeight; const y=scroller===window?window.scrollY:app.scrollTop;
-  $("#progress").style.width=(max>0?Math.min(100,y/max*100):0)+"%";
-},{passive:true});
 </script>
