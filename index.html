@@ -133,12 +133,10 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
 .tip{padding:0 20px;font-size:.88em;color:var(--muted);line-height:1.6}
 
 /* ============ 首頁 ============ */
-.hero{background:var(--hero);color:#fff;padding:26px 20px 28px;text-align:center}
-.hero .today{font-size:.88em;color:var(--on-hero-m);letter-spacing:.06em}
-.hero .today b{font-weight:500;color:var(--on-hero-a);margin-left:8px}
-.hero h1{font-size:25px;font-weight:900;letter-spacing:.06em;margin-top:14px;color:#fff}
-.hero .motto{margin-top:12px;font-family:var(--serif);font-size:19px;letter-spacing:.2em;color:var(--on-hero-a)}
-.hero .sub{margin-top:8px;font-size:.88em;color:var(--on-hero-m);letter-spacing:.06em}
+.hero{background:var(--hero);color:#fff;padding:24px 20px 24px;text-align:center}
+.hero .motto{font-family:var(--serif);font-size:21px;font-weight:900;letter-spacing:.06em;color:var(--on-hero-a);line-height:1.4;white-space:nowrap}
+.hero .dir{margin-top:10px;font-family:var(--serif);font-size:15px;letter-spacing:.1em;color:#fff}
+.hero .sub{margin-top:10px;font-size:.8em;color:var(--on-hero-m);letter-spacing:.04em;line-height:1.6}
 .featured{display:block;margin:18px 16px 0;background:var(--paper);border:1px solid var(--hair);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
 .featured .ph{aspect-ratio:16/9;background:#CFC9BD center/cover no-repeat}
 .featured .b{padding:16px 18px 18px}
@@ -392,10 +390,9 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
 <!-- ================= 首頁 ================= -->
 <main class="view on" id="v-home">
   <section class="hero">
-    <div class="today"><span class="num" id="today"></span><b>丙午年 七月廿二</b></div>
-    <h1>港區省級政協委員聯誼會</h1>
-    <div class="motto">服務國家 · 服務香港 · 服務委員</div>
-    <div class="sub">成立於 2006 年 · 第七屆理事會</div>
+    <h1 class="motto">服務國家 · 服務香港 · 服務委員</h1>
+    <div class="dir">政治立會 · 改革強會 · 奉獻為會 · 服務興會</div>
+    <div class="sub">成立於 2006 年 · 現有會員 3,529 人 · 遍及 30 個省區市</div>
   </section>
 
   <a class="featured" id="featured" href="#/"></a>
@@ -858,7 +855,6 @@ function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("on
 
 /* ====================== 首頁 ====================== */
 (function(){
-  const d=new Date(); $("#today").textContent=`${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日 星期${"日一二三四五六"[d.getDay()]}`;
   const f=ARTICLES.find(a=>a.id==="a636");
   const fe=$("#featured"); fe.href="#/article/"+f.id;
   fe.innerHTML=`<div class="ph" style="background-image:url('${IMG[f.img]}')"></div><div class="b"><div class="k">要聞</div><h3>${esc(f.title)}</h3><div class="d num">${fmtDate(f.date)} · 友好往來</div></div>`;
