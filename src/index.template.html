@@ -5,11 +5,14 @@
 <style>
 /* ============ 設計原則：大字、高對比、留白、少色塊、一屏一事 ============ */
 :root{
-  --navy:#1F3A68; --navy-deep:#16294B; --navy-soft:#E8EEF7;
-  --gold:#B8963E; --gold-soft:#F5EEDC;
-  --ink:#1E1E1E; --ink-2:#3A3A3F; --muted:#5F5F66; --hair:#D9D4CA;
-  --bg:#F5F3EE; --paper:#FFFFFF; --paper-2:#F9F7F2;
-  --hero:#16294B;
+  /* 配色（可切換）：--p 主色 --p-deep 深主色（橫幅） --a 點綴色 */
+  --p:#1F3A68; --p-deep:#16294B; --a:#B8963E; --bg-l:#F5F3EE; --paper2-l:#F9F7F2; --hair-l:#D9D4CA;
+  --navy:var(--p); --navy-deep:var(--p-deep); --navy-soft:color-mix(in srgb,var(--p) 10%,white);
+  --gold:var(--a); --gold-soft:color-mix(in srgb,var(--a) 16%,white);
+  --ink:#1E1E1E; --ink-2:#3A3A3F; --muted:#5F5F66; --hair:var(--hair-l);
+  --bg:var(--bg-l); --paper:#FFFFFF; --paper-2:var(--paper2-l);
+  --hero:var(--p-deep);
+  --on-hero-a:color-mix(in srgb,var(--a) 62%,white); --on-hero-m:rgba(255,255,255,.74);
   --shadow:0 2px 10px rgba(30,40,60,.08);
   --tab-h:72px;
   --fs:18px;
@@ -17,23 +20,30 @@
   --sans:"Noto Sans TC","Noto Sans SC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
 }
 :root[data-big="1"]{--fs:20px}
+/* 六套配色 */
+:root[data-palette="navy"]{--p:#1F3A68;--p-deep:#16294B;--a:#B8963E;--bg-l:#F5F3EE;--paper2-l:#F9F7F2;--hair-l:#D9D4CA}
+:root[data-palette="classic"]{--p:#144D91;--p-deep:#0F3B72;--a:#C8102E;--bg-l:#F3F6FA;--paper2-l:#F7F9FC;--hair-l:#D5DCE6}
+:root[data-palette="red"]{--p:#8E1B24;--p-deep:#6B1219;--a:#B8963E;--bg-l:#FAF6F0;--paper2-l:#FCF9F4;--hair-l:#E2D8CC}
+:root[data-palette="green"]{--p:#2F5D4F;--p-deep:#22463B;--a:#B8963E;--bg-l:#F3F5F0;--paper2-l:#F8F9F5;--hair-l:#D6DBD2}
+:root[data-palette="brown"]{--p:#6B4A2B;--p-deep:#4E3520;--a:#B08A3E;--bg-l:#F8F3EA;--paper2-l:#FBF8F1;--hair-l:#E0D5C4}
+:root[data-palette="contrast"]{--p:#111111;--p-deep:#000000;--a:#B8860B;--bg-l:#FFFFFF;--paper2-l:#F4F4F4;--hair-l:#BDBDBD;--ink:#000000;--ink-2:#111111;--muted:#3C3C3C}
 :root[lang="zh-Hans"]{--sans:"Noto Sans SC","Noto Sans TC","PingFang SC","Microsoft YaHei",system-ui,sans-serif}
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --navy:#8FB0E3; --navy-deep:#0F1A2E; --navy-soft:#1E2A40;
-    --gold:#D4B063; --gold-soft:#2C2616;
+    --navy:color-mix(in srgb,var(--p) 45%,#DCE6F5); --navy-deep:#0F1A2E; --navy-soft:color-mix(in srgb,var(--p) 30%,#1E2128);
+    --gold:color-mix(in srgb,var(--a) 70%,white); --gold-soft:color-mix(in srgb,var(--a) 22%,#1E2128);
     --ink:#F2EFE8; --ink-2:#D5D0C6; --muted:#A9A49B; --hair:#33363D;
     --bg:#14161B; --paper:#1E2128; --paper-2:#23262E;
-    --hero:#0F1A2E;
+    --hero:color-mix(in srgb,var(--p-deep) 55%,#0B1220);
     --shadow:0 2px 10px rgba(0,0,0,.4);
   }
 }
 :root[data-theme="dark"]{
-  --navy:#8FB0E3; --navy-deep:#0F1A2E; --navy-soft:#1E2A40;
-  --gold:#D4B063; --gold-soft:#2C2616;
+  --navy:color-mix(in srgb,var(--p) 45%,#DCE6F5); --navy-deep:#0F1A2E; --navy-soft:color-mix(in srgb,var(--p) 30%,#1E2128);
+  --gold:color-mix(in srgb,var(--a) 70%,white); --gold-soft:color-mix(in srgb,var(--a) 22%,#1E2128);
   --ink:#F2EFE8; --ink-2:#D5D0C6; --muted:#A9A49B; --hair:#33363D;
   --bg:#14161B; --paper:#1E2128; --paper-2:#23262E;
-  --hero:#0F1A2E;
+  --hero:color-mix(in srgb,var(--p-deep) 55%,#0B1220);
   --shadow:0 2px 10px rgba(0,0,0,.4);
 }
 *{box-sizing:border-box}
@@ -124,11 +134,11 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
 
 /* ============ 首頁 ============ */
 .hero{background:var(--hero);color:#fff;padding:26px 20px 28px;text-align:center}
-.hero .today{font-size:.88em;color:#C7D3E8;letter-spacing:.06em}
-.hero .today b{font-weight:500;color:#E9C97A;margin-left:8px}
+.hero .today{font-size:.88em;color:var(--on-hero-m);letter-spacing:.06em}
+.hero .today b{font-weight:500;color:var(--on-hero-a);margin-left:8px}
 .hero h1{font-size:25px;font-weight:900;letter-spacing:.06em;margin-top:14px;color:#fff}
-.hero .motto{margin-top:12px;font-family:var(--serif);font-size:19px;letter-spacing:.2em;color:#E9C97A}
-.hero .sub{margin-top:8px;font-size:.88em;color:#C7D3E8;letter-spacing:.06em}
+.hero .motto{margin-top:12px;font-family:var(--serif);font-size:19px;letter-spacing:.2em;color:var(--on-hero-a)}
+.hero .sub{margin-top:8px;font-size:.88em;color:var(--on-hero-m);letter-spacing:.06em}
 .featured{display:block;margin:18px 16px 0;background:var(--paper);border:1px solid var(--hair);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
 .featured .ph{aspect-ratio:16/9;background:#CFC9BD center/cover no-repeat}
 .featured .b{padding:16px 18px 18px}
@@ -150,6 +160,18 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
 .foot{margin:36px 20px 0;padding-top:18px;border-top:1px solid var(--hair);font-size:.68em;color:var(--muted);opacity:.85;line-height:1.6;text-align:center}
 .foot img{width:170px;margin:0 auto 10px;opacity:.85}
 
+/* ============ 配色選擇 ============ */
+.palettes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px 18px 18px}
+.palettes button{display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 6px;border-radius:12px;border:2px solid var(--hair);background:var(--paper-2);font-size:.85em;color:var(--ink-2)}
+.palettes button.on{border-color:var(--navy);color:var(--navy);font-weight:700}
+.palettes i{width:44px;height:44px;border-radius:50%;display:block;position:relative;box-shadow:inset 0 0 0 3px #fff,0 1px 4px rgba(0,0,0,.2)}
+.palettes i::after{content:"";position:absolute;right:-2px;bottom:-2px;width:16px;height:16px;border-radius:50%;background:var(--sw-a);box-shadow:0 0 0 2px #fff}
+.palettes button.on i::before{content:"✓";position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-weight:700;font-size:20px}
+.pal-note{padding:0 18px 16px;font-size:.82em;color:var(--muted);line-height:1.6}
+.notes .pal-row{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:10px}
+.notes .pal-row button{width:34px;height:34px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25);cursor:pointer}
+.notes .pal-row button.on{outline:3px solid #B8963E}
+
 /* ============ 領導成員 ============ */
 .lead-band{display:block;margin:0 16px;background:var(--paper);border:1.5px solid var(--navy);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
 .lead-band .top2{display:grid;grid-template-columns:1fr 1fr}
@@ -162,9 +184,9 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
 .lead-band .honor b{color:var(--navy);font-weight:500}
 .lead-band .cta{padding:13px 18px;text-align:center;border-top:1px solid var(--hair);color:var(--navy);font-weight:500}
 .honor-band{margin:16px 16px 0;background:var(--hero);color:#fff;border-radius:12px;padding:18px 20px;text-align:center}
-.honor-band small{display:block;font-size:.85em;letter-spacing:.3em;color:#E9C97A}
+.honor-band small{display:block;font-size:.85em;letter-spacing:.3em;color:var(--on-hero-a)}
 .honor-band b{display:block;font-family:var(--serif);font-size:1.3em;letter-spacing:.08em;line-height:1.5;margin-top:6px;font-weight:900}
-.honor-band p{margin:8px 0 0;font-size:.82em;color:#C7D3E8}
+.honor-band p{margin:8px 0 0;font-size:.82em;color:var(--on-hero-m)}
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 16px}
 .pcard{background:var(--paper);border:1px solid var(--hair);border-radius:12px;padding:12px 6px 10px;text-align:center;box-shadow:var(--shadow)}
 .pcard img{width:78px;height:104px;object-fit:cover;object-position:top;border-radius:6px;margin:0 auto;background:var(--navy-soft)}
@@ -217,7 +239,7 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
 /* ============ 會員 / 更多 ============ */
 .mem-hero{margin:16px 16px 0;background:var(--hero);color:#fff;border-radius:12px;padding:22px 20px}
 .mem-hero h2{font-size:24px;font-weight:900;letter-spacing:.08em;color:#fff}
-.mem-hero p{margin:8px 0 0;font-size:.92em;line-height:1.65;color:#DCE5F3}
+.mem-hero p{margin:8px 0 0;font-size:.92em;line-height:1.65;color:var(--on-hero-m)}
 .menu{margin:0 16px;background:var(--paper);border:1px solid var(--hair);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
 .menu a,.menu button{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:0 18px;min-height:64px;border-bottom:1px solid var(--hair);font-size:1em;color:var(--ink)}
 .menu a:last-child,.menu button:last-child{border-bottom:0}
@@ -258,7 +280,7 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
 .org{padding:0 16px}
 .org .top{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .org .lead{background:var(--hero);color:#fff;border-radius:12px;padding:16px;text-align:center}
-.org .lead small{display:block;font-size:.85em;letter-spacing:.2em;color:#DCE5F3}
+.org .lead small{display:block;font-size:.85em;letter-spacing:.2em;color:var(--on-hero-m)}
 .org .lead b{display:block;font-family:var(--serif);font-size:1.4em;font-weight:900;letter-spacing:.12em;margin-top:4px}
 .org .row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
 .org .cell{background:var(--paper);border:1px solid var(--hair);border-radius:12px;padding:12px 6px;text-align:center}
@@ -337,8 +359,9 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
   <div class="kicker">設計說明</div>
   <h2>為 50–65 歲讀者而設</h2>
   <p>正文 18 號字（一鍵放大到 20 號），行距 1.7，深墨字配米白底，對比度達 AA 級以上。</p>
-  <div class="swatches"><i style="background:#1F3A68"></i><i style="background:#B8963E"></i><i style="background:#F5F3EE"></i><i style="background:#FFFFFF"></i><i style="background:#1E1E1E"></i></div>
-  <p style="margin-top:12px">主色沿用現站的藏藍，沉穩可信；金色只作點綴；紅色只留在會徽上，不再滿屏鋪紅。</p>
+  <p style="margin-top:12px"><b>六套配色，點一下即切換</b>（手機上在「更多 → 顯示設定 → 配色」）：</p>
+  <div class="pal-row" id="pal-row"></div>
+  <p id="pal-desc" style="margin-top:10px"></p>
   <ul>
     <li>每一屏只放一件事：首頁是「日期 → 一則要聞 → 六個大入口 → 動態列表」，不再有橫滑輪播和小標籤。</li>
     <li>可點的地方高度不少於 48px，列表每行 72px 以上，拇指好按。</li>
@@ -497,6 +520,11 @@ svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.9;stroke
   </section>
   <section class="sec">
     <div class="sec-h"><h2>顯示設定</h2></div>
+    <div class="menu" style="margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:14px;padding:14px 18px 0"><svg class="i" viewBox="0 0 24 24" style="font-size:26px;color:var(--navy)"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18c-2 0-2-2-1-3s1-3-1-3-3-1-3-3 2-4 5-4"/><circle cx="8" cy="9" r="1"/><circle cx="14" cy="7" r="1"/><circle cx="17" cy="11" r="1"/></svg><span class="t" style="padding:0">配色<small>選一套看着最舒服的</small></span></div>
+      <div class="palettes" id="palettes"></div>
+      <div class="pal-note" id="pal-note"></div>
+    </div>
     <div class="menu">
       <button id="set-lang"><svg class="i" viewBox="0 0 24 24"><path d="M4 6h10M9 4v2M6 10c1 3 3 6 6 8M12 10c-1 3-3 6-6 8"/><path d="M14 20l3-8 3 8M15.2 17h3.6"/></svg><span class="t">文字<small>繁體中文 / 简体中文</small></span><span class="seg2" data-nolang><span id="lg-t">繁</span><span id="lg-s">简</span></span></button>
       <button id="set-big"><svg class="i" viewBox="0 0 24 24"><path d="M4 18 10 5l6 13M6 14h8M17 12h5M19.5 9.5v5"/></svg><span class="t">大字模式<small>正文放大到 20 號字</small></span><span class="sw" id="sw-big"></span></button>
@@ -935,6 +963,23 @@ $("#search-in").addEventListener("input",e=>{
 });
 $("#search-res").addEventListener("click",e=>{ if(e.target.closest("a")) $("#search").classList.remove("on"); });
 
+/* ====================== 配色 ====================== */
+const PALETTES = [
+ {id:"navy",     name:"藏藍金",   p:"#1F3A68", a:"#B8963E", desc:"沉穩可信的藏藍配一點金，正式場合最穩妥。"},
+ {id:"classic",  name:"港省聯原色", p:"#144D91", a:"#C8102E", desc:"沿用現有網站的藍與紅：藍作主色，紅只作點綴線，老會員一眼認得。"},
+ {id:"red",      name:"中國紅",   p:"#8E1B24", a:"#B8963E", desc:"會徽的紅收成深絳紅，只用在標題和按鈕，喜慶而不刺眼。"},
+ {id:"green",    name:"墨綠護眼", p:"#2F5D4F", a:"#B8963E", desc:"墨綠對眼睛最溫和，長時間閱讀不易疲勞。"},
+ {id:"brown",    name:"宣紙暖褐", p:"#6B4A2B", a:"#B08A3E", desc:"像宣紙與檀木的暖色，書卷氣，適合閱讀長文。"},
+ {id:"contrast", name:"黑白高對比", p:"#111111", a:"#B8860B", desc:"純白底黑字，對比最高，視力較弱的會員最清楚。"}
+];
+function setPalette(id,quiet){ const P=PALETTES.find(x=>x.id===id)||PALETTES[0]; root.dataset.palette=P.id; try{localStorage.setItem("hkcppcc-palette",P.id)}catch(_){}
+  $$("#palettes button").forEach(b=>b.classList.toggle("on",b.dataset.id===P.id)); $$("#pal-row button").forEach(b=>b.classList.toggle("on",b.dataset.id===P.id));
+  $("#pal-note").textContent=P.desc; const d=$("#pal-desc"); if(d) d.textContent=P.name+"：" +P.desc;
+  document.querySelector('meta[name="theme-color"]').content=P.p; if(!quiet) toast("已切換為「"+P.name+"」"); }
+$("#palettes").innerHTML=PALETTES.map(P=>`<button data-id="${P.id}"><i style="background:${P.p};--sw-a:${P.a}"></i>${P.name}</button>`).join("");
+$("#palettes").addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) setPalette(b.dataset.id); });
+const pr=$("#pal-row"); if(pr){ pr.innerHTML=PALETTES.map(P=>`<button data-id="${P.id}" title="${P.name}" style="background:${P.p}"></button>`).join(""); pr.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) setPalette(b.dataset.id); }); }
+
 /* ====================== 大字 / 深色 / 簡繁 ====================== */
 const root=document.documentElement;
 function syncSw(){ $("#sw-big").classList.toggle("on",root.dataset.big==="1"); $("#btn-big").classList.toggle("on",root.dataset.big==="1");
@@ -943,8 +988,8 @@ function toggleBig(){ root.dataset.big = root.dataset.big==="1" ? "0" : "1"; try
 function toggleDark(){ const dark = root.dataset.theme==="dark" || (!root.dataset.theme && matchMedia("(prefers-color-scheme: dark)").matches); root.dataset.theme = dark?"light":"dark"; try{localStorage.setItem("hkcppcc-theme",root.dataset.theme)}catch(_){} syncSw(); }
 $("#btn-big").onclick=toggleBig; $("#set-big").onclick=toggleBig; $("#set-dark").onclick=toggleDark;
 $("#btn-lang").onclick=toggleLang; $("#btn-lang2").onclick=toggleLang; $("#set-lang").onclick=toggleLang;
-try{ const t=localStorage.getItem("hkcppcc-theme"); if(t) root.dataset.theme=t; const b=localStorage.getItem("hkcppcc-big"); if(b==="1") root.dataset.big="1"; const l=localStorage.getItem("hkcppcc-lang"); if(l) lang=l; }catch(_){}
-syncSw();
+let pal="navy"; try{ const t=localStorage.getItem("hkcppcc-theme"); if(t) root.dataset.theme=t; const b=localStorage.getItem("hkcppcc-big"); if(b==="1") root.dataset.big="1"; const l=localStorage.getItem("hkcppcc-lang"); if(l) lang=l; pal=localStorage.getItem("hkcppcc-palette")||"navy"; }catch(_){}
+setPalette(pal,true); syncSw();
 
 /* ====================== 表單 ====================== */
 ["reg","msg"].forEach(k=>{ $("#"+k+"-form").addEventListener("submit",e=>{ e.preventDefault(); $("#"+k+"-ok").style.display="block"; toast(lang==="zh-Hans"?"已提交（示范）":"已提交（示範）"); }); });
