@@ -8,7 +8,8 @@
 python3 build.py
 ```
 
-公網網址（GitHub Pages，`docs/` 目錄）：https://yilu2099.github.io/hkcppcc-mobile/
+正式網址：https://gsl.t2099.com/ （阿里雲服務器，nginx 站點 `/www/wwwroot/gsl.t2099.com/`，Let's Encrypt 證書自動續期）
+備用網址（GitHub Pages）：https://yilu2099.github.io/hkcppcc-mobile/
 Artifact 預覽：https://claude.ai/code/artifact/feb5083a-846c-4fff-b496-6ae8ca11be8a
 
-更新上線：`python3 build.py && git add -A && git commit -m "update" && git push`
+更新上線：`./deploy.sh`（打包並上傳到 gsl.t2099.com）；GitHub 備份：`git add -A && git commit -m "update" && git push`
