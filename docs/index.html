@@ -1,49 +1,48 @@
 <!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light dark"></head><body style="margin:0"><title>港省聯 · 手機版</title>
 <meta name="theme-color" content="#1F3A68">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap">
 <style>
 /* ============ 設計原則：大字、高對比、留白、少色塊、一屏一事 ============ */
 :root{
   /* 配色（可切換）：--p 主色 --p-deep 深主色（橫幅） --a 點綴色 */
   --p:#1F3A68; --p-deep:#16294B; --a:#B8963E; --bg-l:#F5F3EE; --paper2-l:#F9F7F2; --hair-l:#D9D4CA;
-  --navy:var(--p); --navy-deep:var(--p-deep); --navy-soft:color-mix(in srgb,var(--p) 10%,white);
-  --gold:var(--a); --gold-soft:color-mix(in srgb,var(--a) 16%,white);
+  --p-soft:#E9EBF0; --a-soft:#F4EEE0; --on-a:#D3BE87; --p-dk:#8799B6; --p-soft-dk:#1E283B; --a-dk:#CDB678; --a-soft-dk:#403B2D; --hero-dk:#111F38;
+  --navy:var(--p); --navy-deep:var(--p-deep); --navy-soft:var(--p-soft);
+  --gold:var(--a); --gold-soft:var(--a-soft);
   --ink:#1E1E1E; --ink-2:#3A3A3F; --muted:#5F5F66; --hair:var(--hair-l);
   --bg:var(--bg-l); --paper:#FFFFFF; --paper-2:var(--paper2-l);
   --hero:var(--p-deep);
-  --on-hero-a:color-mix(in srgb,var(--a) 62%,white); --on-hero-m:rgba(255,255,255,.74);
+  --on-hero-a:var(--on-a); --on-hero-m:rgba(255,255,255,.74);
   --shadow:0 2px 10px rgba(30,40,60,.08);
   --tab-h:72px;
   --fs:18px;
-  --serif:"Noto Serif TC","Songti TC","PingFang TC",serif;
-  --sans:"Noto Sans TC","Noto Sans SC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --serif:"Songti TC","Songti SC","Noto Serif TC","Noto Serif CJK TC","SimSun","PingFang TC",serif;
+  --sans:-apple-system,"PingFang TC","PingFang SC","Hiragino Sans","Noto Sans TC","Noto Sans CJK TC","Microsoft JhengHei","Microsoft YaHei",system-ui,sans-serif;
 }
 :root[data-big="1"]{--fs:20px}
 /* 六套配色 */
-:root[data-palette="navy"]{--p:#1F3A68;--p-deep:#16294B;--a:#B8963E;--bg-l:#F5F3EE;--paper2-l:#F9F7F2;--hair-l:#D9D4CA}
-:root[data-palette="classic"]{--p:#144D91;--p-deep:#0F3B72;--a:#C8102E;--bg-l:#F3F6FA;--paper2-l:#F7F9FC;--hair-l:#D5DCE6}
-:root[data-palette="red"]{--p:#8E1B24;--p-deep:#6B1219;--a:#B8963E;--bg-l:#FAF6F0;--paper2-l:#FCF9F4;--hair-l:#E2D8CC}
-:root[data-palette="green"]{--p:#2F5D4F;--p-deep:#22463B;--a:#B8963E;--bg-l:#F3F5F0;--paper2-l:#F8F9F5;--hair-l:#D6DBD2}
-:root[data-palette="brown"]{--p:#6B4A2B;--p-deep:#4E3520;--a:#B08A3E;--bg-l:#F8F3EA;--paper2-l:#FBF8F1;--hair-l:#E0D5C4}
-:root[data-palette="contrast"]{--p:#111111;--p-deep:#000000;--a:#B8860B;--bg-l:#FFFFFF;--paper2-l:#F4F4F4;--hair-l:#BDBDBD;--ink:#000000;--ink-2:#111111;--muted:#3C3C3C}
-:root[lang="zh-Hans"]{--sans:"Noto Sans SC","Noto Sans TC","PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+:root[data-palette="navy"]{--p:#1F3A68;--p-deep:#16294B;--a:#B8963E;--bg-l:#F5F3EE;--paper2-l:#F9F7F2;--hair-l:#D9D4CA;--p-soft:#E9EBF0;--a-soft:#F4EEE0;--on-a:#D3BE87;--p-dk:#8799B6;--p-soft-dk:#1E283B;--a-dk:#CDB678;--a-soft-dk:#403B2D;--hero-dk:#111F38}
+:root[data-palette="classic"]{--p:#144D91;--p-deep:#0F3B72;--a:#C8102E;--bg-l:#F3F6FA;--paper2-l:#F7F9FC;--hair-l:#D5DCE6;--p-soft:#E8EDF4;--a-soft:#F6D9DE;--on-a:#DD6B7D;--p-dk:#82A1C8;--p-soft-dk:#1B2E48;--a-dk:#D8586D;--a-soft-dk:#431D29;--hero-dk:#0D294D}
+:root[data-palette="red"]{--p:#8E1B24;--p-deep:#6B1219;--a:#B8963E;--bg-l:#FAF6F0;--paper2-l:#FCF9F4;--hair-l:#E2D8CC;--p-soft:#F4E8E9;--a-soft:#F4EEE0;--on-a:#D3BE87;--p-dk:#B98B97;--p-soft-dk:#401F27;--a-dk:#CDB678;--a-soft-dk:#403B2D;--hero-dk:#40121C}
+:root[data-palette="green"]{--p:#2F5D4F;--p-deep:#22463B;--a:#B8963E;--bg-l:#F3F5F0;--paper2-l:#F8F9F5;--hair-l:#D6DBD2;--p-soft:#EAEFED;--a-soft:#F4EEE0;--on-a:#D3BE87;--p-dk:#8EA8AA;--p-soft-dk:#233334;--a-dk:#CDB678;--a-soft-dk:#403B2D;--hero-dk:#182F2F}
+:root[data-palette="brown"]{--p:#6B4A2B;--p-deep:#4E3520;--a:#B08A3E;--bg-l:#F8F3EA;--paper2-l:#FBF8F1;--hair-l:#E0D5C4;--p-soft:#F0EDEA;--a-soft:#F2ECE0;--on-a:#CEB687;--p-dk:#A9A09A;--p-soft-dk:#352D29;--a-dk:#C8AD78;--a-soft-dk:#3E382D;--hero-dk:#302520}
+:root[data-palette="contrast"]{--p:#111111;--p-deep:#000000;--a:#B8860B;--bg-l:#FFFFFF;--paper2-l:#F4F4F4;--hair-l:#BDBDBD;--ink:#000000;--ink-2:#111111;--muted:#3C3C3C;--p-soft:#E7E7E7;--a-soft:#F4ECD8;--on-a:#D3B468;--p-dk:#81868E;--p-soft-dk:#1A1C21;--a-dk:#CDAA54;--a-soft-dk:#403722;--hero-dk:#05080E}
+:root[lang="zh-Hans"]{--sans:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif}
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --navy:color-mix(in srgb,var(--p) 45%,#DCE6F5); --navy-deep:#0F1A2E; --navy-soft:color-mix(in srgb,var(--p) 30%,#1E2128);
-    --gold:color-mix(in srgb,var(--a) 70%,white); --gold-soft:color-mix(in srgb,var(--a) 22%,#1E2128);
+    --navy:var(--p-dk); --navy-deep:#0F1A2E; --navy-soft:var(--p-soft-dk);
+    --gold:var(--a-dk); --gold-soft:var(--a-soft-dk);
     --ink:#F2EFE8; --ink-2:#D5D0C6; --muted:#A9A49B; --hair:#33363D;
     --bg:#14161B; --paper:#1E2128; --paper-2:#23262E;
-    --hero:color-mix(in srgb,var(--p-deep) 55%,#0B1220);
+    --hero:var(--hero-dk);
     --shadow:0 2px 10px rgba(0,0,0,.4);
   }
 }
 :root[data-theme="dark"]{
-  --navy:color-mix(in srgb,var(--p) 45%,#DCE6F5); --navy-deep:#0F1A2E; --navy-soft:color-mix(in srgb,var(--p) 30%,#1E2128);
-  --gold:color-mix(in srgb,var(--a) 70%,white); --gold-soft:color-mix(in srgb,var(--a) 22%,#1E2128);
+  --navy:var(--p-dk); --navy-deep:#0F1A2E; --navy-soft:var(--p-soft-dk);
+  --gold:var(--a-dk); --gold-soft:var(--a-soft-dk);
   --ink:#F2EFE8; --ink-2:#D5D0C6; --muted:#A9A49B; --hair:#33363D;
   --bg:#14161B; --paper:#1E2128; --paper-2:#23262E;
-  --hero:color-mix(in srgb,var(--p-deep) 55%,#0B1220);
+  --hero:var(--hero-dk);
   --shadow:0 2px 10px rgba(0,0,0,.4);
 }
 *{box-sizing:border-box}
